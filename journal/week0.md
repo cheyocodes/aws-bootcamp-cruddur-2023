@@ -7,7 +7,7 @@
 
 
 ### Recreate Logical Architectual Diagram in Lucid Charts	
-
+![AWS Logical Diagram](../_docs/assets/journal/cruddur-logical-diagram.png)
 
 ### Installed AWS CLI	
 
