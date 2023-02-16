@@ -6,16 +6,15 @@ A screenshot of my gitpod account with the environment variables used to configu
 ![](./assets//week-0/gitpod-env-vars.png)
 
 Sending a request to my AWS account that returns information about the current IAM identity being used. 
-![](./assets/week-0/aws-cli-gitpod-config.png)
+![AWS CLI Setup](./assets/week-0/aws-cli-gitpod-config.png)
 
 ### Create a Billing Alarm using CLI
+Created an SNS topic for a billing alarm using the AWS CLI. The script to create the topics can be found [here](/aws/json/create-billing-alarm-topic.sh).
+
+![Billing Alarm Topic](./assets/week-0/billing-alarm-topic.png)
 
 
-### Create a Budget using CLI 
+Subscribed the SNS topic created above to the email where I want the notifications sent using the AWS CLI. The script can be found [here](/aws/json/create-sns-topic-subscription.sh).
 
-
-### Recreate Conceptual Diagram
-
-
-### Recreate Logical Diagram 
+![SNS Topic Subscription](./assets/week-0/sns-topic-subscription.png)
 
