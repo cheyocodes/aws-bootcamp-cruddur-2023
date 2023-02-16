@@ -2,14 +2,15 @@
 
 ## Required Homework
 
+### Install AWS CLI on Gitpod.io
+![](../_docs/assets/journal/gitpod-credentials.png)
+
 ### Recreate Conceptual Diagram in Lucid Charts or on a Napkin	
 ![AWS Conceptual Diagram](../_docs/assets/journal/cruddur-conceptual-diagram-week-0.png)
 
 
 ### Recreate Logical Architectual Diagram in Lucid Charts	
 ![AWS Logical Diagram](../_docs/assets/journal/cruddur-logical-diagram.png)
-
-### Installed AWS CLI	
 
 
 ### Create a Billing Alarm	
