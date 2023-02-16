@@ -2,10 +2,11 @@
 
 ## Required Homework
 
-### Spend Considerations 
+### Create Billing Alarm
 Created Billing alerts for the bootcamp
 ![Billing Alerts](../_docs/assets/journal/billing-alarms.png)
 
+### Create Budget 
 Created Budget to track credits spent
 ![Budgets](../_docs/assets/journal/budgets-setup-week-0.png)
 
@@ -18,7 +19,7 @@ Created Budget to track credits spent
 
 
 ## Create Admin User 
-Created admins IAM user
+Created admin IAM user
 ![Admin User](../_docs/assets/journal/admin-user-sergio.png)
 
 
