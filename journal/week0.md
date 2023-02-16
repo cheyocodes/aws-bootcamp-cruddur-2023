@@ -2,6 +2,13 @@
 
 ## Required Homework
 
+### Spend Considerations 
+Created Billing alerts for the bootcamp
+![Billing Alerts](../_docs/assets/journal/billing-alarms.png)
+
+Created Budget to track credits spent
+![Budgets](../_docs/assets/journal/budgets-setup-week-0.png)
+
 ### Install AWS CLI on Gitpod.io
 I successfully installed the AWS CLI on a Gitpod workspace using the `.gitpod.yml` configuration. 
 ![](../_docs/assets/journal/aws-cli-gitpod-config.png)
