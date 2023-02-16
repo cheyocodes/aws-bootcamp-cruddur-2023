@@ -18,7 +18,6 @@ Subscribed the SNS topic created above to the email where I want the notificatio
 
 ![SNS Topic Subscription](./assets/week-0/sns-topic-subscription.png)
 
-
 ### Create a Budget using CLI 
 Created a budget for the bootcamp using the AWS CLI. The script can be found [here](/aws/json/create-aws-budget.sh)
 
@@ -29,3 +28,7 @@ Created conceptual of the Cruddur application. The Conceptual diagram is used to
 
 ![Conceptual Diagram](./assets/week-0/cruddur-conceptual-diagram-week-0.png)
 
+### Recreate Logical Diagram 
+Created the logical diagram of the Cruddur application. The Logical diagram is used to communicate the broad strokes  of the technical architecture to engineers.
+
+![Logical Diagram](./assets/week-0/cruddur-logical-diagram.png)
