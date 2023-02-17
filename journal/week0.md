@@ -57,7 +57,9 @@ We create billing alarms to monitor the estimated charges against our AWS accoun
 ![CloudWatch and SNS](./assets/week-0/billing-alarm-architecture.png)
 
 
-Created an SNS topic for a billing alarm using the AWS CLI. The bash script to create the topics can be found [here](/aws/json/create-billing-alarm-topic.sh).
+Created an SNS topic for a billing alarm using the AWS CLI.
+
+The bash script to create the topics can be found [here](/aws/json/create-billing-alarm-topic.sh).
 ```sh
 aws sns create-topic --name "AWS-Bootcamp-Billing-Alarm-Topic"
 ```
@@ -65,12 +67,67 @@ aws sns create-topic --name "AWS-Bootcamp-Billing-Alarm-Topic"
 ![Billing Alarm Topic](./assets/week-0/billing-alarm-topic.png)
 
 
-Subscribed the SNS topic created above to the email where I want the notifications sent using the AWS CLI. The script can be found [here](/aws/json/create-sns-topic-subscription.sh).
+Once we create a topic we establish a subscription, which is the email where we want to receive billin notifications.
+
+The script can be found [here](/aws/json/create-sns-topic-subscription.sh).
+```sh
+aws sns subscribe \
+    --topic-arn arn:aws:sns:us-east-1:$AWS_ACCOUNT_ID:AWS-Bootcamp-Billing-Alarm-Topic \
+    --protocol email \
+    --notification-endpoint $AWS_ACCOUNT_EMAIL
+```
+
+
+Created cloudwatch alarm to get trigger when the account exceed $50. 
+
+Finally, we create a cloudwatch metric using the `alarm-config.json` file found down below and associate the topic we previously created by referencing it's *Amazon Resource Name (ARN)*, e.g. `"arn:aws:sns:us-east-1:152720000000:AWS-Bootcamp-Billing-Alarm-Topic"`. 
+
+![Alarm Config](./assets/week-0/cloudwatch-alarm.png)
+```sh
+aws cloudwatch put-metric-alarm --cli-input-json file://alarm-config.json
+```
+The script can be found [here](/aws/json/create-put-metric-alarm.sh).
+
+```sh
+{
+    "AlarmName": "DailyEstimatedCharges",
+    "AlarmDescription": "This alarm would be triggered if the daily estimated charges exceeds 50$",
+    "ActionsEnabled": true,
+    "AlarmActions": [
+        "arn:aws:sns:us-east-1:152720000000:AWS-Bootcamp-Billing-Alarm-Topic"
+    ],
+    "EvaluationPeriods": 1,
+    "DatapointsToAlarm": 1,
+    "Threshold": 50,
+    "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+    "TreatMissingData": "breaching",
+    "Metrics": [{
+        "Id": "m1",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/Billing",
+                "MetricName": "EstimatedCharges",
+                "Dimensions": [{
+                    "Name": "Currency",
+                    "Value": "USD"
+                }]
+            },
+            "Period": 86400,
+            "Stat": "Maximum"
+        },
+        "ReturnData": false
+    },
+    {
+        "Id": "e1",
+        "Expression": "IF(RATE(m1)>0,RATE(m1)*86400,0)",
+        "Label": "DailyEstimatedCharges",
+        "ReturnData": true
+    }]
+}
+```
 
 ![SNS Topic Subscription](./assets/week-0/sns-topic-subscription.png)
 
-Created cloudwatch alarm to get trigger when the account exceed $50. The script can be found [here](/aws/json/create-put-metric-alarm.sh).
-![Alarm Config](./assets/week-0/cloudwatch-alarm.png)
 
 ---
 ### Create a Budget using CLI 
