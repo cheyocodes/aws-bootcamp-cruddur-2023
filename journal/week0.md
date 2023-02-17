@@ -131,10 +131,109 @@ The script can be found [here](/aws/json/create-put-metric-alarm.sh).
 ### Create a Budget using CLI 
 Created a budget for the bootcamp using the AWS CLI. The script can be found [here](/aws/json/create-aws-budget.sh)
 
+```sh
+aws budgets create-budget \
+    --account-id $AWS_ACCOUNT_ID \
+    --budget file://budget.json \
+    --notifications-with-subscribers file://budget-notifications-with-subscribers.json
+```
+```json
+// budget.json
+{
+    "BudgetLimit": {
+        "Amount": "100",
+        "Unit": "USD"
+    },
+    "BudgetName": "AWS Bootcamp Budget",
+    "BudgetType": "COST",
+    "CostFilters": {
+        "TagKeyValue": [
+            "user:Key$value1",
+            "user:Key$value2"
+        ]
+    },
+    "CostTypes": {
+        "IncludeCredit": true,
+        "IncludeDiscount": true,
+        "IncludeOtherSubscription": true,
+        "IncludeRecurring": true,
+        "IncludeRefund": true,
+        "IncludeSubscription": true,
+        "IncludeSupport": true,
+        "IncludeTax": true,
+        "IncludeUpfront": true,
+        "UseBlended": false
+    },
+    "TimePeriod": {
+        "Start": 1477958399,
+        "End": 3706473600
+    },
+    "TimeUnit": "MONTHLY"
+}
+```
+
+```json
+// budget-notifications-with-subscribers.json
+[
+    {
+        "Notification": {
+            "ComparisonOperator": "GREATER_THAN",
+            "NotificationType": "ACTUAL",
+            "Threshold": 80,
+            "ThresholdType": "PERCENTAGE"
+        },
+        "Subscribers": [
+            {
+                "Address": "sergioXXXXXXXXXXX@gmail.com",
+                "SubscriptionType": "EMAIL"
+            }
+        ]
+    }
+]
+```
+
 ![AWS Bootcamp Budget](./assets/week-0/aws-bootcamp-budget.png)
 
 Created another budget *manually* using the AWS Console to track credits spent. 
 ![Credits Spent Budget](./assets/week-0/manual-credits-tracking-budget.png)
+
+If we were to use the CLI, the main things that would change in the `budget.json` file would be the budget name, and the cost types. Notice that the only parameter set to `true` is `"IncludeCredit"`. The `budget-notifications-with-subscribers.json` file would stay the same.
+
+```json
+// budget.json 
+{
+    "BudgetLimit": {
+        "Amount": "100",
+        "Unit": "USD"
+    },
+    "BudgetName": "AWS Bootcamp Credits Spent",
+    "BudgetType": "COST",
+    "CostFilters": {
+        "TagKeyValue": [
+            "user:Key$value1",
+            "user:Key$value2"
+        ]
+    },
+    "CostTypes": {
+        "IncludeCredit": true,
+        "IncludeDiscount": false,
+        "IncludeOtherSubscription": false,
+        "IncludeRecurring": false,
+        "IncludeRefund": false,
+        "IncludeSubscription": false,
+        "IncludeSupport": false,
+        "IncludeTax": false,
+        "IncludeUpfront": false,
+        "UseBlended": false
+    },
+    "TimePeriod": {
+        "Start": 1477958399,
+        "End": 3706473600
+    },
+    "TimeUnit": "MONTHLY"
+}
+```
+
 
 ### Recreate Conceptual Diagram
 Created conceptual of the Cruddur application. The Conceptual diagram is used to communicate at a high level the architecture to key stakeholders.
