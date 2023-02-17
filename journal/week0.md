@@ -1,6 +1,18 @@
 # Week 0 — Billing and Architecture
 
+### Overview
+This week, we have been preparing for the bootcamp by completing various tasks. These include configuring initial settings, managing costs, designing different types of architectural diagrams, learning about cloud security, and gaining a general understanding of the Cruddur application and its components.
+
+---
+
 ## Required Homework
+The following required homework tasks have been completed:  
+- [X] Install and verify the AWS CLI on gitpod workspaces
+- [X] Create Billing and Budget Alarms using CLI 
+- [X] Re-create Cruddur's Conceputual Diagram 
+- [X] Re-create Cruddur's Logical Diagram 
+
+
 ### Install and verify AWS CLI 
 A screenshot of my gitpod account with the environment variables used to configure the AWS CLI. 
 ![](./assets//week-0/gitpod-env-vars.png)
