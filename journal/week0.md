@@ -67,7 +67,7 @@ aws sns create-topic --name "AWS-Bootcamp-Billing-Alarm-Topic"
 ![Billing Alarm Topic](./assets/week-0/billing-alarm-topic.png)
 
 
-Once we create a topic we establish a subscription, which is the email where we want to receive billin notifications.
+Once we create a topic we establish a subscription, which is the email where we want to receive billing alert notifications.
 
 The script can be found [here](/aws/json/create-sns-topic-subscription.sh).
 ```sh
