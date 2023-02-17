@@ -14,8 +14,38 @@ The following required homework tasks have been completed:
 
 
 ### Install and verify AWS CLI 
-A screenshot of my gitpod account with the environment variables used to configure the AWS CLI. 
-![](./assets//week-0/gitpod-env-vars.png)
+To install the AWS CLI on our gitpod workspace we added a gitpod **task** using by adding the following configuration into our `.gitpod.yml` file: 
+
+```yml
+tasks:
+  - name: aws-cli
+    env:
+      AWS_CLI_AUTO_PROMPT: on-partial
+    init: |
+      cd /workspace
+      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      unzip awscliv2.zip
+      sudo ./aws/install
+      cd $THEIA_WORKSPACE_ROOT
+...
+```
+
+Gitpod [tasks](https://www.gitpod.io/docs/configure/workspaces/tasks) are shell scripts that runs on top of the Docker image Gitpod configures to run your workspace. When this docker image is run, Gitpod initialize the script defined in the `init` section of the `tasks` configuration block. This includes installing the AWS CLI and changing to the root directory of our project stored in the `THEIA_WORKSPACE_ROOT`. 
+
+The next step is to give the AWS CLI the account information it needs so that it has access to our AWS account. We do this by setting environment variables and storing them in a special location where Gitpod stores secrets using the `gp env` command followed by the environment variable name.
+
+```sh
+gp env AWS_ACCOUNT_ID="123456789101"
+gp env AWS_ACCESS_KEY_ID="AKIAIOSFODNN7EXAMPLE"
+gp env AWS_SECRET_ACCESS_KEY="wJalrXUtnMEIF/K7MDENG/bPxRfiCYEXAMPLEKEY"
+gp env AWS_DEFAULT_REGION="your-region" # e.g. us-east-1
+gp env AWS_ACCOUNT_EMAIL="your-user-email@gmail.com" 
+```
+
+You can view these variables in your gitpod account under *Variables*.
+
+Here's a screenshot of my gitpod account with the environment variables used to configure the AWS CLI. 
+![Gitpod Account Variables](./assets//week-0/gitpod-env-vars.png)
 
 Sending a request to my AWS account that returns information about the current IAM identity being used. 
 ![AWS CLI Setup](./assets/week-0/aws-cli-gitpod-config.png)
