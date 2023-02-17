@@ -1,11 +1,11 @@
 # Week 0 — Billing and Architecture
 
-### Overview
+## Overview
 This week, we have been preparing for the bootcamp by completing various tasks. These include configuring initial settings, managing costs, designing different types of architectural diagrams, learning about cloud security, and gaining a general understanding of the Cruddur application and its components.
 
 ---
 
-## Required Homework
+### Required Homework
 The following required homework tasks have been completed:  
 - [X] Install and verify the AWS CLI on gitpod workspaces
 - [X] Create Billing and Budget Alarms using CLI 
@@ -13,7 +13,7 @@ The following required homework tasks have been completed:
 - [X] Re-create Cruddur's Logical Diagram 
 
 
-### Install and verify AWS CLI 
+## Install and verify AWS CLI 
 To install the AWS CLI on our gitpod workspace we added a gitpod **task** using by adding the following configuration into our `.gitpod.yml` file: 
 
 ```yml
@@ -42,16 +42,25 @@ gp env AWS_DEFAULT_REGION="your-region" # e.g. us-east-1
 gp env AWS_ACCOUNT_EMAIL="your-user-email@gmail.com" 
 ```
 
-You can view these variables in your gitpod account under *Variables*.
+We can view these variables in your gitpod account under * User Settings / Variables / Environment Variables*.
 
 Here's a screenshot of my gitpod account with the environment variables used to configure the AWS CLI. 
 ![Gitpod Account Variables](./assets//week-0/gitpod-env-vars.png)
 
-Sending a request to my AWS account that returns information about the current IAM identity being used. 
+Next time we log into our account Gitpod will have access to the values injected into the environment variables we defined previously. 
+
+Here's a snapshot that shows the result of executing the `aws sts get-caller-identity` command.
 ![AWS CLI Setup](./assets/week-0/aws-cli-gitpod-config.png)
 
-### Create a Billing Alarm using CLI
-Created an SNS topic for a billing alarm using the AWS CLI. The script to create the topics can be found [here](/aws/json/create-billing-alarm-topic.sh).
+## Create a Billing Alarm using the AWS CLI
+We create billing alarms to monitor the estimated charges against our AWS accounts using **Amazon CloudWatch** and the **Simple Notification Service (SNS)**. Here's a high level illustration depicting the relationship between CloudWatch alarms and the Simple Notificatio Service.
+![CloudWatch and SNS](./assets/week-0/billing-alarm-architecture.png)
+
+
+Created an SNS topic for a billing alarm using the AWS CLI. The bash script to create the topics can be found [here](/aws/json/create-billing-alarm-topic.sh).
+```sh
+aws sns create-topic --name "AWS-Bootcamp-Billing-Alarm-Topic"
+```
 
 ![Billing Alarm Topic](./assets/week-0/billing-alarm-topic.png)
 
