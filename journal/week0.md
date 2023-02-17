@@ -18,10 +18,16 @@ Subscribed the SNS topic created above to the email where I want the notificatio
 
 ![SNS Topic Subscription](./assets/week-0/sns-topic-subscription.png)
 
+Created cloudwatch alarm to get trigger when the account exceed $50. The script can be found [here](/aws/json/create-put-metric-alarm.sh).
+![Alarm Config](./assets/week-0/cloudwatch-alarm.png)
+
+---
 ### Create a Budget using CLI 
 Created a budget for the bootcamp using the AWS CLI. The script can be found [here](/aws/json/create-aws-budget.sh)
 
 ![AWS Bootcamp Budget](./assets/week-0/aws-bootcamp-budget.png)
+
+
 
 ### Recreate Conceptual Diagram
 Created conceptual of the Cruddur application. The Conceptual diagram is used to communicate at a high level the architecture to key stakeholders.
