@@ -27,7 +27,8 @@ Created a budget for the bootcamp using the AWS CLI. The script can be found [he
 
 ![AWS Bootcamp Budget](./assets/week-0/aws-bootcamp-budget.png)
 
-
+Created another budget *manually* using the AWS Console to track credits spent. 
+![Credits Spent Budget](./assets/week-0/manual-credits-tracking-budget.png)
 
 ### Recreate Conceptual Diagram
 Created conceptual of the Cruddur application. The Conceptual diagram is used to communicate at a high level the architecture to key stakeholders.
