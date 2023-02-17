@@ -53,7 +53,7 @@ Here's a snapshot that shows the result of executing the `aws sts get-caller-ide
 ![AWS CLI Setup](./assets/week-0/aws-cli-gitpod-config.png)
 
 ## Create a Billing Alarm using the AWS CLI
-We create billing alarms to monitor the estimated charges against our AWS accounts using **Amazon CloudWatch** and the **Simple Notification Service (SNS)**. Here's a high level illustration depicting the relationship between CloudWatch alarms and the Simple Notificatio Service.
+We create billing alarms to monitor the estimated charges against our AWS accounts using **Amazon CloudWatch** and the **Simple Notification Service (SNS)**. Here's a high level diagram depicting the relationship between CloudWatch alarms and the Simple Notification Service.
 ![CloudWatch and SNS](./assets/week-0/billing-alarm-architecture.png)
 
 
