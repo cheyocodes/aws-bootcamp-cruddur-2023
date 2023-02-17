@@ -78,8 +78,6 @@ aws sns subscribe \
 ```
 
 
-Created cloudwatch alarm to get trigger when the account exceed $50. 
-
 Finally, we create a cloudwatch metric using the `alarm-config.json` file found down below and associate the topic we previously created by referencing it's *Amazon Resource Name (ARN)*, e.g. `"arn:aws:sns:us-east-1:152720000000:AWS-Bootcamp-Billing-Alarm-Topic"`. 
 
 ![Alarm Config](./assets/week-0/cloudwatch-alarm.png)
