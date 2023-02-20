@@ -80,6 +80,8 @@ So, when you run the command `docker build -t flask-backend ./flask-backend`, Do
 
 It's important to know that there are other flags and options that can be used with the docker build command to customize the build process, such as `--no-cache` to disable caching during the build, `-f` to specify a different `Dockerfile` name or location, and `-q` to suppress the build output.
 
+![](../journal/assets/week-01/docker-build-flask-backend.png)
+
 
 
 
