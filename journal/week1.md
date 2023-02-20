@@ -19,6 +19,9 @@
 ### Containerize `backend-flask`
 ![Backend Flask Dockerfile](../journal/assets/week-01/backend-flask-Dockerfile.png)
 
+### Install flask dependencies and Run run server on Gitpod
+![Install dependencies and run flask server](../journal/assets/week-01/install-flask-req-and-run-flask-server-locally.png)
+
 ### Containerize `frontend-react-js`
 
 ### Create `docker-compose.yml` file
