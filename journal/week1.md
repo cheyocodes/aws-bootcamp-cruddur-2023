@@ -17,6 +17,7 @@
 
 ## Required Homework 
 ### Containerize `backend-flask`
+![Backend Flask Dockerfile](../journal/assets/week-01/backend-flask-Dockerfile.png)
 
 ### Containerize `frontend-react-js`
 
