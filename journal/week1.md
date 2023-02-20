@@ -52,7 +52,15 @@ In this case we got an **Internal Server (500) Error** because we needed to set 
 ![Internal Server Error](../journal/assets/week-01/internal-server-error-flask-server.png)
 
 
+To fix these issues 👆, we needed to set two environment variables used to enable Cross-Origin Resource Sharing (CORS) requests for the flask application: 
 
+```sh 
+export BACKEND_URL="*"
+export FRONTEND_URL="*"
+```
+
+Here's the result after successfully setting the environment variables: 
+![JSON result](../journal/assets/week-01/json-result-after-setting-envars.png)
 
 
 
