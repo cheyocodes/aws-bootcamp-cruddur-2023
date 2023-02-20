@@ -62,6 +62,21 @@ export FRONTEND_URL="*"
 We also needed to append `/api/activities/home` to the backend url. 
 Here's the result after successfully setting the environment variables: 
 
+### Building the flask backend image 
+```sh
+# run this from the root folder
+docker build -t flask-backend ./flask-backend
+```
+
+- `docker build` is the command used to build a Docker image. It takes a `Dockerfile` and a build context as input, and produces a new Docker image as output.
+- `-t flask-backend` is a flag that specifies the name and optionally a tag to be assigned to the resulting Docker image. In this case, the name of the image is flask-backend.
+- `./flask-backend` is the path to the build context, which is the set of files and directories that will be used as input for building the Docker image. In this case, it specifies the directory where the Dockerfile for the Flask backend is located.
+
+So, when you run the command `docker build -t flask-backend ./flask-backend`, Docker will look for the `Dockerfile` in the `./flask-backend` directory and use it to create a new Docker image with the name `flask-backend`. The resulting image will contain all the dependencies and configurations required to run the Flask backend.
+
+It's important to know that there are other flags and options that can be used with the docker build command to customize the build process, such as `--no-cache` to disable caching during the build, `-f` to specify a different `Dockerfile` name or location, and `-q` to suppress the build output.
+
+
 
 ![JSON result](../journal/assets/week-01/json-result-after-setting-envars.png)
 
