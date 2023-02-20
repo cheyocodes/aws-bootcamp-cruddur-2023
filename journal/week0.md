@@ -5,6 +5,17 @@ This week, we have been preparing for the bootcamp by completing various tasks. 
 
 ---
 
+<!-- ### Prerequisites Technologies
+- [X] GitHub Account
+- [X] Gitpod Account 
+- [X] Github Codespaces Account
+- [X] AWS Account
+- [X] Momento Account
+- [X] Custom Domain Name
+- [X] Lucid Charts Account 
+- [X] HoneyComb Account
+- [X] Rollbar Account -->
+
 ### Required Homework
 The following required homework tasks have been completed:  
 - [X] Install and verify the AWS CLI on gitpod workspaces
@@ -249,3 +260,22 @@ Created the logical diagram of the Cruddur application. The Logical diagram is u
 You can view the draw.io diagram [here](https://drive.google.com/file/d/1MhepxEIkr9vtsjyM5FIulpOMj5dMzHPX/view?usp=sharing).
 
 ![Logical Diagram](./assets/week-0/cruddur-logical-diagram.png)
+
+
+<!-- ## Homework Challenges  -->
+<!-- ### Destroy your root account credentials, Set MFA, IAM role -->
+
+
+<!-- ### Use EventBridge to hookup Health Dashboard to SNS and send notification when there is a service health issue. -->
+
+
+<!-- ### Review all the questions of each pillars in the Well Architected Tool (No specialized lens) -->
+
+
+<!-- ### Create an architectural diagram (to the best of your ability) the CI/CD logical pipeline in Lucid Charts -->
+
+
+<!-- ### Research the technical and service limits of specific services and how they could impact the technical path for technical flexibility.  -->
+
+
+<!-- ### Open a support ticket and request a service limit -->
