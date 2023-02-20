@@ -22,6 +22,24 @@
 ### Install flask dependencies and Run run server on Gitpod
 ![Install dependencies and run flask server](../journal/assets/week-01/install-flask-req-and-run-flask-server-locally.png)
 
+Install dependencies
+```sh
+pip3 install -r requirements.txt --quiet
+```
+This command is used to install Python packages specified in a file called requirements.txt using the pip3 package manager. The --quiet flag is used to suppress the output of the installation process.
+
+
+
+```sh
+python3 -m flask run --host="0.0.0.0" --port=4567
+```
+Here's a breakdown of the command and what each option does:
+-   `python3`: This is the command to run the Python 3 interpreter.
+-   `-m flask`: This option tells the Python interpreter to run the Flask module as a script.
+-   `run`: This is the command to start the Flask development server.
+-   `--host="0.0.0.0"`: This option tells the Flask development server to listen on all network interfaces, allowing the server to be accessible from outside the container.
+-   `--port=4567`: This option specifies the port number that the Flask development server should listen on.
+
 ### Containerize `frontend-react-js`
 
 ### Create `docker-compose.yml` file
