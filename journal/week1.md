@@ -44,6 +44,35 @@ We must do this in Gitpod to gain access to the server from the URL provided.
 ![Unlock server URL on Gitpod](../journal/assets/week-01/unlock-url-in-gitpod.png)
 
 
+#### Not Found and Internal Server Errors 
+We got a **Not Found (404) Error** because the root route (`/`) does not exist in the server. Therefore, the server is unable to find the requested resource. 
+![Not found Error](../journal/assets/week-01/not-found-flask-server.png)
+
+In this case we got an **Internal Server (500) Error** because we needed to set environment variables that allow the server to function properly. 
+![Internal Server Error](../journal/assets/week-01/internal-server-error-flask-server.png)
+
+
+
+
+
+
+
+
+<!-- ![](../journal/assets/week-01/) -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Containerize `frontend-react-js`
 
 ### Create `docker-compose.yml` file
