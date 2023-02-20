@@ -29,7 +29,6 @@ pip3 install -r requirements.txt --quiet
 This command is used to install Python packages specified in a file called requirements.txt using the pip3 package manager. The --quiet flag is used to suppress the output of the installation process.
 
 
-
 ```sh
 python3 -m flask run --host="0.0.0.0" --port=4567
 ```
@@ -39,6 +38,11 @@ Here's a breakdown of the command and what each option does:
 -   `run`: This is the command to start the Flask development server.
 -   `--host="0.0.0.0"`: This option tells the Flask development server to listen on all network interfaces, allowing the server to be accessible from outside the container.
 -   `--port=4567`: This option specifies the port number that the Flask development server should listen on.
+
+#### Unlock URL by clicking on the Lock icon
+We must do this in Gitpod to gain access to the server from the URL provided. 
+![Unlock server URL on Gitpod](../journal/assets/week-01/unlock-url-in-gitpod.png)
+
 
 ### Containerize `frontend-react-js`
 
