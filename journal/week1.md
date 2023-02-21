@@ -80,7 +80,7 @@ So, when you run the command `docker build -t flask-backend ./flask-backend`, Do
 
 It's important to know that there are other flags and options that can be used with the docker build command to customize the build process, such as `--no-cache` to disable caching during the build, `-f` to specify a different `Dockerfile` name or location, and `-q` to suppress the build output.
 
-![](../journal/assets/week-01/docker-build-flask-backend.png)
+![docker build](../journal/assets/week-01/docker-build-flask-backend.png)
 
 
 Running `docker build` results in a new image being created. We can list all the images currently stored in our computer using the following command: 
@@ -88,7 +88,7 @@ Running `docker build` results in a new image being created. We can list all the
 docker images
 ```
 
-![](../journal/assets/week-01/docker-images-cmd.png)
+![docker images](../journal/assets/week-01/docker-images-cmd.png)
 
 We can run the `flask-backend` image using the `docker run` command.
 
@@ -115,19 +115,29 @@ Overall, this command creates a new Docker container based on the `backend-flask
 
 Here's the output of running the command: 
 
-![](../journal/assets/week-01/)
+![](../journal/assets/week-01/docker-run.png)
+
+
+#### Listing containers
+```sh
+docker container ps
+```
+
+The `docker container ps` command is used to list the currently running Docker containers on your system. The `ps` stands for **"process status"**, and it provides a list of all the active containers along with their relevant details such as the container ID, image used to create the container, container status, name of the container, and the ports exposed by the container.
+
+By default, docker container ps lists only the running containers. However, you can use various options with this command to customize the output. For example, you can use the `-a` or `--all` option to list all the containers, including the ones that have exited. You can also use the `--filter` option to filter the list of containers based on specific criteria such as container name, ID, or status.
+
+In summary, the docker container ps command is useful for monitoring the status of Docker containers and for troubleshooting issues related to containerization.
+
+Here's the output of running the command: 
+![docker ps output](../journal/assets/week-01/docker-ps.png)
+
+
 
 
 
 
 <!-- ![](../journal/assets/week-01/) -->
-
-
-
-
-
-
-
 
 
 
