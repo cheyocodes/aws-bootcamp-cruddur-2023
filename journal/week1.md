@@ -182,21 +182,12 @@ export BACKEND_URL="*"
 ```
 
 ```sh 
-docker container run --rm \
-  --publish 4567:4567 \
-  --detach \
-  --env FRONTEND_URL \
-  --env BACKEND_URL \
-  backend-flask 
+docker container run --rm --p 4567:4567 -it -e FRONTEND_URL -e BACKEND_URL= backend-flask
 ```
 
 We can also access the values directly from our CLI without having to export them in our current shell session: 
 ```sh
-docker container run --rm \
-  --publish 4567:4567 --detach \
-  --env FRONTEND_URL='*' \
-  --env BACKEND_URL='*' \
-  backend-flask
+docker container run --rm --p 4567:4567 -it -e FRONTEND_URL='*' -e BACKEND_URL='*' backend-flask
 ```
 
 > **ATTENTION**: We use single quotes `''` instead of `""` because the shell might interpret the asterisk with double quotes (`"*"`) as a directory list of all the files. 
