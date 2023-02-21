@@ -175,6 +175,33 @@ You can also attach a shell to the running container by using the VSCode interfa
 
 
 #### Setting Environment Variables with Docker Command
+We can get the environment variable values set in our environment through the CLI: 
+```sh
+export FRONTEND_URL="*"
+export BACKEND_URL="*"
+```
+
+```sh 
+docker container run --rm \
+  --publish 4567:4567 \
+  --detach \
+  --env FRONTEND_URL \
+  --env BACKEND_URL \
+  backend-flask 
+```
+
+We can also access the values directly from our CLI without having to export them in our current shell session: 
+```sh
+docker container run --rm \
+  --publish 4567:4567 --detach \
+  --env FRONTEND_URL='*' \
+  --env BACKEND_URL='*' \
+  backend-flask
+```
+
+> **ATTENTION**: We use single quotes `'*'` instead of `"*"` because the shell might interpret the asterisk (`*`) as a directory list of all the files. 
+
+
 
 
 
