@@ -90,6 +90,33 @@ docker images
 
 ![](../journal/assets/week-01/docker-images-cmd.png)
 
+We can run the `flask-backend` image using the `docker run` command.
+
+**Short form**:
+```sh
+docker container run --rm -p 4567:4567 -d backend-flask
+```
+
+**Extended form**:
+```sh
+docker container run --rm \
+  --publish 4567:4567 \
+  --detach \
+  backend-flask
+```
+
+-   `docker container run`: This is the command to run a Docker container.
+-   `--rm`: This option removes the container automatically when it stops running, which helps keep the Docker environment clean.
+-   `--publish 4567:4567`: This option maps the host port 4567 to the container port 4567. This means that any traffic sent to port 4567 on the host machine will be forwarded to port 4567 in the container. This is useful for exposing network services running inside the container to the host machine or to the outside world.
+-   `--detach`: This option runs the container in the background (detached mode), which means the container runs in the background and frees up the terminal for further use.
+-   `backend-flask`: This is the name of the image to be used for creating the container.
+
+Overall, this command creates a new Docker container based on the `backend-flask` image, exposes port 4567 to the host machine, and runs the container in the background. When the container stops running, it is automatically removed. This command is useful for running a Flask backend application in a Docker container.
+
+Here's the output of running the command: 
+
+![](../journal/assets/week-01/)
+
 
 
 
