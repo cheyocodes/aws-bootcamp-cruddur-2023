@@ -83,6 +83,12 @@ It's important to know that there are other flags and options that can be used w
 ![](../journal/assets/week-01/docker-build-flask-backend.png)
 
 
+Running `docker build` results in a new image being created. We can list all the images currently stored in our computer using the following command: 
+```sh
+docker images
+```
+
+![](../journal/assets/week-01/docker-images-cmd.png)
 
 
 
