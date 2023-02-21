@@ -239,8 +239,14 @@ networks:
     name: cruddur
 ```
 
+We can run the `docker-compose.yml` file using the `docker compose` command: 
+```sh 
+docker compose up
+```
 
+Alternatively, we can run the the file using the VSCode interface: 
 
+![Docker Compose up](../journal/assets/week-01/vscode-docker-compose-up.png)
 
 
 
