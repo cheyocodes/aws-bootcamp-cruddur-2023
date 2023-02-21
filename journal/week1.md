@@ -199,7 +199,7 @@ docker container run --rm \
   backend-flask
 ```
 
-> **ATTENTION**: We use single quotes `'*'` instead of `"*"` because the shell might interpret the asterisk (`*`) as a directory list of all the files. 
+> **ATTENTION**: We use single quotes `''` instead of `""` because the shell might interpret the asterisk with double quotes (`"*"`) as a directory list of all the files. 
 
 
 
