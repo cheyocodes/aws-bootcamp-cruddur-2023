@@ -249,6 +249,11 @@ Alternatively, we can run the the file using the VSCode interface:
 ![Docker Compose up](../journal/assets/week-01/vscode-docker-compose-up.png)
 
 
+Running both the frontend and backend: 
+![frontend and backend communicating with each other](../journal/assets/week-01/running-frontend-and-backend.png)
+
+
+
 
 
 <!-- ![](../journal/assets/week-01/) -->
