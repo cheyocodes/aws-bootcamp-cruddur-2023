@@ -190,11 +190,27 @@ We can also access the values directly from our CLI without having to export the
 docker container run --rm -p 4567:4567 -it -e FRONTEND_URL='*' -e BACKEND_URL='*' backend-flask
 ```
 
+> **ATTENTION**: We use single quotes `''` instead of `""` because the shell might interpret the asterisk with double quotes (`"*"`) as a directory list of all the files. 
+
 ##### Questions: 
 - Do we actually need to run `-it` since we don't need to pass anything through STDIN? 
 
+#### Dockerizing the Frontend 
 
-> **ATTENTION**: We use single quotes `''` instead of `""` because the shell might interpret the asterisk with double quotes (`"*"`) as a directory list of all the files. 
+```sh
+FROM node:16.18
+
+ENV PORT=3000
+
+COPY . /frontend-react-js
+WORKDIR /frontend-react-js
+RUN npm install
+EXPOSE ${PORT}
+CMD ["npm", "start"]
+```
+
+
+
 
 
 
