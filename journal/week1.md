@@ -265,17 +265,40 @@ volumes:
   - /frontend-react-js/node_modules
 ```
 **Why do we do this?**
-- By adding the - /frontend-react-js/node_modules line, we are telling Docker to create a second volume (an anonymous volume) in addition to the one we already have, ./frontend-react-js:/frontend-react-js.
-- When the containers are run, the Docker engine will use this secondary volume (/frontend-react-js/node-modules) to access the dependencies needed by the React application.
+- By adding the - `/frontend-react-js/node_modules` line, we are telling Docker to create a second volume (an anonymous volume) in addition to the one we already have, `./frontend-react-js:/frontend-react-js`.
+- When the containers are run, the Docker engine will use this secondary volume (`/frontend-react-js/node-modules`) to access the dependencies needed by the React application.
 - This means that we no longer need to access the resources on our local computer. We only need the resources in the Docker container.
 - As a result, we can remove the need for Node or any other local dependencies entirely.
 
-To summarize, by adding the - /frontend-react-js/node_modules line, we create a second volume that allows the Docker engine to access the necessary dependencies for the React application. This eliminates the need for local resources and dependencies, such as Node, and makes the application more portable and efficient.
+To summarize, by adding the - `/frontend-react-js/node_modules` line, we create a second volume that allows the Docker engine to access the necessary dependencies for the React application. This eliminates the need for local resources and dependencies, such as Node, and makes the application more portable and efficient.
 
 #### Rebuilding the containers 
 Now to completely rebuild the containers, we can use the `--build` flag:
 ```sh
 docker compose up --build 
+```
+
+### Open API Notifications 
+Add activities notifications path to Cruddur's OpenAPI document
+
+```yml
+paths:
+...
+  /api/activities/notifications:
+    get:
+      description: 'Return a feed of activities for all of those people that I follow'
+      tags:
+        - activities
+      parameters: []
+      responses:
+        '200':
+          description: Returns an array of activities
+          content: 
+            application/json:
+              schema: 
+                type: array 
+                items: 
+                  $ref: '#/components/schemas/Activity'
 ```
 
 ---
