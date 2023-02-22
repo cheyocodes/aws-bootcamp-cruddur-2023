@@ -359,6 +359,10 @@ volumes:
     driver: local
 ````
 
+#### Create Dynamodb Local Table (for testing)
+![Run DynamoDB and Create Music Table](../journal/assets/week-01/run-dynamodb-and-create-music-table.png)
+
+
 ---
 
 
@@ -370,6 +374,7 @@ volumes:
 - [ ] Research best practices of Dockerfiles and attempt to implement it in your Dockerfile
 - [ ] Learn how to install Docker on your localmachine and get the same containers running outside of Gitpod / Codespaces
 - [ ] Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes. 
+
 
 
 <!-- ![](../journal/assets/week-01/) -->
