@@ -306,6 +306,9 @@ paths:
 
 ![Notifications Endpoint](../journal/assets/week-01/service-object-notifications-activity.png)
 
+### Add frontend notifications page 
+
+![React Frontend Notifications Page](../journal/assets/week-01/react-notifications-page.png)
 
 ---
 
