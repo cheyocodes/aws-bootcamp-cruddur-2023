@@ -24,4 +24,4 @@ class NotificationsActivities:
             }]
         }]
 
-        
+        return results
