@@ -301,6 +301,12 @@ paths:
                   $ref: '#/components/schemas/Activity'
 ```
 
+#### Add `/api/activities/notifications` flask api endpoint and `NotificationsActivities` service object
+
+
+![Notifications Endpoint](../journal/assets/week-01/service-object-notifications-activity.png)
+
+
 ---
 
 
@@ -313,6 +319,8 @@ paths:
 - [ ] Learn how to install Docker on your localmachine and get the same containers running outside of Gitpod / Codespaces
 - [ ] Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes. 
 
+
+<!-- ![](../journal/assets/week-01/) -->
 
 ### Run the dockerfile CMD as an external script
 
@@ -337,5 +345,3 @@ paths:
 
 
 
-
-<!-- ![](../journal/assets/week-01/) -->
