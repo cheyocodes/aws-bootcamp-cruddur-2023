@@ -271,6 +271,13 @@ volumes:
 - As a result, we can remove the need for Node or any other local dependencies entirely.
 
 To summarize, by adding the - /frontend-react-js/node_modules line, we create a second volume that allows the Docker engine to access the necessary dependencies for the React application. This eliminates the need for local resources and dependencies, such as Node, and makes the application more portable and efficient.
+
+#### Rebuilding the containers 
+Now to completely rebuild the containers, we can use the `--build` flag:
+```sh
+docker compose up --build 
+```
+
 ---
 
 
