@@ -356,6 +356,8 @@ services:
       - db:/var/lib/postgresql/data
 volumes:
   db:
+    # this means we'll be storing the data locally on the machine 
+    # where the containers will be running.
     driver: local
 ````
 
