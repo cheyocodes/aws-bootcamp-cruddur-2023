@@ -361,8 +361,11 @@ volumes:
     driver: local
 ````
 
-#### Create Dynamodb Local Table (for testing)
+#### Create Dynamodb Local Table `Music`
 ![Run DynamoDB and Create Music Table](../journal/assets/week-01/run-dynamodb-and-create-music-table.png)
+
+#### Querying the `Music` Table 
+![Qurying the DynamoDB local table](../journal/assets/week-01/querying-dynamodb-local.png)
 
 
 ---
