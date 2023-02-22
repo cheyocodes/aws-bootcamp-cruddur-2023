@@ -365,7 +365,11 @@ volumes:
 ![Run DynamoDB and Create Music Table](../journal/assets/week-01/run-dynamodb-and-create-music-table.png)
 
 #### Querying the `Music` Table 
-![Qurying the DynamoDB local table](../journal/assets/week-01/querying-dynamodb-local.png)
+![Querying the DynamoDB local table](../journal/assets/week-01/querying-dynamodb-local.png)
+
+#### Connect to postgres via vscode postgres client 
+![Connect via postgres client](../journal/assets/week-01/connect-to-postgres-via-postgres-vscode-client.png)
+
 
 
 ---
