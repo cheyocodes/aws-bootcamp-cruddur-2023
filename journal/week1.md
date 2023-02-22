@@ -13,8 +13,8 @@
 - [X] [Document the Notification Endpoint for the OpenAPI Document](https://www.youtube.com/watch?v=k-_o0cCpksk&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=27)
 - [X] [Write a Flask Backend Endpoint for Notifications](https://www.youtube.com/watch?v=k-_o0cCpksk&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=27)
 - [X] [Write a React Page for Notifications](https://www.youtube.com/watch?v=k-_o0cCpksk&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=27)
-- [ ] [Run DynamoDB Local Container and ensure it works](https://www.youtube.com/watch?v=CbQNMaa6zTg&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=28)
-- [ ] [Run Postgres Container and ensure it works](https://www.youtube.com/watch?v=CbQNMaa6zTg&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=28)
+- [X] [Run DynamoDB Local Container and ensure it works](https://www.youtube.com/watch?v=CbQNMaa6zTg&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=28)
+- [X] [Run Postgres Container and ensure it works](https://www.youtube.com/watch?v=CbQNMaa6zTg&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=28)
 
 
 ## Required Homework 
@@ -370,8 +370,12 @@ volumes:
 #### Connect to postgres via vscode postgres client 
 ![Connect via postgres client](../journal/assets/week-01/connect-to-postgres-via-postgres-vscode-client.png)
 
+#### Connect to postgres via `psql`
 
-
+```sh
+psql --host -U postgres  # the password is "password"
+``` 
+![](../journal/assets/week-01/connect-to-postgres-via-psql.png)
 ---
 
 
