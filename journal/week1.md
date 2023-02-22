@@ -255,6 +255,21 @@ Running both the frontend and backend:
 ![frontend and backend communicating with each other](../journal/assets/week-01/running-frontend-and-backend.png)
 
 
+### Notification Feature 
+
+#### Add anonymous volume to `docker-compose.yml` file
+```
+...
+volumes:
+  - ./frontend-react-js:/frontend-react-js
+  - /frontend-react-js/node_modules
+```
+**Why do we do this?**
+- By adding the `/frontend-react-js/node_modules` volume. We tell docker to create a second volume, besides `./frontend-react-js:/frontend-react-js`. 
+- The Docker enginee will use that volume whenever we run the container. 
+- We don't need the assets in our local computer anymore. We only need the resources in the Docker container. 
+- This removes the need for node or any other local dependencies entirely.
+
 ---
 
 
