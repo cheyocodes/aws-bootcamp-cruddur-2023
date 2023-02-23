@@ -376,6 +376,23 @@ volumes:
 psql --host -U postgres  # the password is "password"
 ``` 
 ![](../journal/assets/week-01/connect-to-postgres-via-psql.png)
+
+### Installing Snyk 
+```sh
+brew tap snyk/tap
+brew install snyk
+```
+
+#### Running Snyk against a docker image
+```sh
+snyk container test <DOCKER_IMAGE_NAME>
+```
+
+Example:
+```sh
+snyk container test postgres
+```
+
 ---
 
 
