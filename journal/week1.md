@@ -407,7 +407,6 @@ snyk container test postgres
 
 
 
-<!-- ![](../journal/assets/week-01/) -->
 
 ### Run the dockerfile CMD as an external script
 
@@ -449,9 +448,20 @@ docker build -t myusername/frontend-react-js ./frontend-react-js
 
 
 #### Push the images to your Dockerhub Account
+
+Push backend image
 ```sh
-docker push <YOUR_DOCKERHUB_USERNAME/YOUR_IMAGE_NAME>
+docker push <YOUR_DOCKERHUB_USERNAME>/backend-flask 
 ```
+
+Push frontend image 
+```sh
+docker push <YOUR_DOCKERHUB_USERNAME>/frontend-react-js
+```
+
+![Dockerhub images](../journal/assets/week-01/dockerhub-images.png)
+
+
 
 
 
@@ -472,3 +482,6 @@ docker push <YOUR_DOCKERHUB_USERNAME/YOUR_IMAGE_NAME>
 
 
 
+
+
+<!-- ![](../journal/assets/week-01/) -->
