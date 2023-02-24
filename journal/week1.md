@@ -414,6 +414,46 @@ snyk container test postgres
 
 ### Push and tag a image to DockerHub (they have a free tier)
 
+#### Log into your DockerHub 
+> NOTE: You must create a github access token for this step.
+export environment variables for your docker
+```sh
+# e.g. place this in your ~/.zshrc or ~/.bashrc file 
+export $DOCKERHUB_USERNAME="your-dockerhub-username"
+export $DOCKERHUB_ACCESS_TOKEN="your-dockerhub-access-token"
+```
+
+Run the `docker login` command referencing the environment variables you created.
+```sh
+echo $DOCKERHUB_ACCESS_TOKEN | docker login --username $DOCKERHUB_USERNAME --password-stdin
+```
+
+#### Build and tag your local images
+> NOTE: Execute the command from the root directory (e.g. `aws-bootcamp-cruddur-2023`)
+
+Pattern to build the image and tag it simultaneously:
+```sh
+docker build -t <YOUR_DOCKERHUB_USERNAME>/<YOUR_IMAGE_NAME> <CONTEXT_PATH>
+```
+> `<CONTEXT_PATH>` refers to the directory where your `Dockerfile` is located.
+
+Example 1: Building and taging the backend image
+```sh 
+docker build -t myusername/backend-flask ./backend-flask
+```
+
+Example 2: Building and taging the frontend image
+```sh 
+docker build -t myusername/frontend-react-js ./frontend-react-js
+```
+
+
+#### Push the images to your Dockerhub Account
+```sh
+docker push <YOUR_DOCKERHUB_USERNAME/YOUR_IMAGE_NAME>
+```
+
+
 
 ### Use multi-stage building for a Dockerfile build
 
