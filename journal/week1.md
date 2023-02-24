@@ -373,7 +373,7 @@ volumes:
 #### Connect to postgres via `psql`
 
 ```sh
-psql --host -U postgres  # the password is "password"
+psql -h localhost -U postgres  # the password is "password"
 ``` 
 ![](../journal/assets/week-01/connect-to-postgres-via-psql.png)
 
