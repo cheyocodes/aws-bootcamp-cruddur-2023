@@ -436,6 +436,11 @@ EXPOSE ${PORT}
 CMD ["sh", "run_script.sh"]
 ```
 
+Check backend container runs
+```sh
+docker run -d --rm -p 4567:4567 -it -e FRONTEND_URL='*' -e BACKEND_URL='*' backend-flask
+```
+
 ### Push and tag a image to DockerHub (they have a free tier)
 
 #### Log into your DockerHub 
@@ -491,6 +496,46 @@ docker push <YOUR_DOCKERHUB_USERNAME>/frontend-react-js
 
 
 ### Use multi-stage building for a Dockerfile build
+
+#### Add multi-stage builds to `backend-flask`
+**Adding a stage for building and one for running**
+```sh
+# Multi-stage builds
+# Stage 1: Build app
+FROM python:3.10-slim-buster as builder 
+
+WORKDIR /backend-flask
+
+COPY requirements.txt requirements.txt
+
+RUN pip3 install -r requirements.txt
+
+COPY . .
+
+
+# Stage 2: Run app
+FROM python:3.10-slim-buster
+
+WORKDIR /backend-flask
+
+COPY --from=builder . .
+
+RUN chmod +x run_script.sh
+
+ENV FLASK_ENV=development
+
+EXPOSE ${PORT}
+
+CMD ["sh", "run_script.sh"]
+```
+
+**Test backend works**
+```
+docker run -d --rm -p 4567:4567 -it -e FRONTEND_URL='*' -e BACKEND_URL='*' backend-flask
+```
+
+#### Add multi-stage builds to `frontend-react-js`
+
 
 
 ### Implement a healthcheck in the V3 Docker compose file
