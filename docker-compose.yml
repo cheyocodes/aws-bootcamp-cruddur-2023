@@ -9,6 +9,14 @@ services:
       - "4567:4567"
     volumes:
       - ./backend-flask:/backend-flask
+    healthcheck:
+      # The --fail option in curl is used to fail silently and exit with a non-zero status code 
+      # if the HTTP response status code is not successful (i.e., not in the 200-299 range). 
+      # This is commonly used in scripts to determine if a resource is available or not.
+      test: "curl --fail https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}/health"
+      interval: 10s
+      timeout: 5s
+      retries: 3
   frontend-react-js:
     environment:
       REACT_APP_BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
