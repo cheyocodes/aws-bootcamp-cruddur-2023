@@ -397,7 +397,7 @@ snyk container test postgres
 
 
 ## Homework Challenges 
-- [ ] Run the dockerfile CMD as an external script
+- [X] Run the dockerfile CMD as an external script
 - [X] Push and tag a image to DockerHub (they have a free tier)
 - [ ] Use multi-stage building for a Dockerfile build
 - [ ] Implement a healthcheck in the V3 Docker compose file
@@ -409,7 +409,37 @@ snyk container test postgres
 
 
 ### Run the dockerfile CMD as an external script
+Add `run_script.sh` command to turn the `CMD` default container command as an external script.
+```sh
+#!/bin/bash
+python3 -m flask run --host=0.0.0.0 --port=4567
+```
 
+Replace the `CMD` instruction command by the external command
+```sh
+FROM python:3.10-slim-buster
+
+WORKDIR /backend-flask
+
+COPY requirements.txt requirements.txt
+
+RUN pip3 install -r requirements.txt
+
+COPY . .
+
+RUN chmod +x run_script.sh
+
+ENV FLASK_ENV=development
+
+EXPOSE ${PORT}
+
+CMD ["sh", "run_script.sh"]
+```
+
+Check backend container runs
+```sh
+docker run -d --rm -p 4567:4567 -it -e FRONTEND_URL='*' -e BACKEND_URL='*' backend-flask
+```
 
 ### Push and tag a image to DockerHub (they have a free tier)
 
@@ -466,6 +496,53 @@ docker push <YOUR_DOCKERHUB_USERNAME>/frontend-react-js
 
 
 ### Use multi-stage building for a Dockerfile build
+
+#### Add multi-stage builds to `backend-flask`
+**Adding a stage for building and one for running**
+```sh
+# Multi-stage builds
+# Stage 1: Build app
+FROM python:3.10-slim-buster as builder 
+
+WORKDIR /backend-flask
+
+COPY requirements.txt requirements.txt
+
+RUN pip3 install -r requirements.txt
+
+COPY . .
+
+
+# Stage 2: Run app
+FROM python:3.10-slim-buster
+
+WORKDIR /backend-flask
+
+COPY --from=builder /root/.local /root/.local
+
+# ENV PATH=/root/.local/bin:$PATH
+COPY run_script.sh run_script.sh
+
+RUN chmod +x run_script.sh
+
+ENV FLASK_ENV=development
+
+EXPOSE ${PORT}
+
+CMD ["sh", "run_script.sh"]
+```
+
+##### Resources 
+- [multi-stage docker python](https://pythonspeed.com/articles/multi-stage-docker-python/)
+
+
+**Test backend works**
+```
+docker run -d --rm -p 4567:4567 -it -e FRONTEND_URL='*' -e BACKEND_URL='*' backend-flask
+```
+
+#### Add multi-stage builds to `frontend-react-js`
+
 
 
 ### Implement a healthcheck in the V3 Docker compose file
