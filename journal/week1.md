@@ -397,7 +397,7 @@ snyk container test postgres
 
 
 ## Homework Challenges 
-- [ ] Run the dockerfile CMD as an external script
+- [X] Run the dockerfile CMD as an external script
 - [X] Push and tag a image to DockerHub (they have a free tier)
 - [ ] Use multi-stage building for a Dockerfile build
 - [ ] Implement a healthcheck in the V3 Docker compose file
