@@ -2,3 +2,4 @@ replacements.txt
 Makefile
 docker/**/*
 notes
+setup.py
