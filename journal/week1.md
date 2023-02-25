@@ -409,7 +409,32 @@ snyk container test postgres
 
 
 ### Run the dockerfile CMD as an external script
+Add `run_script.sh` command to turn the `CMD` default container command as an external script.
+```sh
+#!/bin/bash
+python3 -m flask run --host=0.0.0.0 --port=4567
+```
 
+Replace the `CMD` instruction command by the external command
+```sh
+FROM python:3.10-slim-buster
+
+WORKDIR /backend-flask
+
+COPY requirements.txt requirements.txt
+
+RUN pip3 install -r requirements.txt
+
+COPY . .
+
+RUN chmod +x run_script.sh
+
+ENV FLASK_ENV=development
+
+EXPOSE ${PORT}
+
+CMD ["sh", "run_script.sh"]
+```
 
 ### Push and tag a image to DockerHub (they have a free tier)
 
