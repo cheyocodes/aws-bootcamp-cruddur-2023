@@ -1,16 +1,38 @@
-FROM python:3.10-slim-buster
+## Build Stage 
+FROM python:3.10-slim-buster AS builder
 
+# Install container dependencies 
+RUN apt update
+
+# Create virtual environment to install all dependencies
+RUN python3 -m venv venv
+ENV PATH=/venv/bin:$PATH
+
+# Install python 
 WORKDIR /backend-flask
-
-COPY requirements.txt requirements.txt
+COPY requirements.txt .
 RUN pip3 install -r requirements.txt
 
-COPY . .
 
-ENV FLASK_ENV=development
 
-EXPOSE ${PORT}
+## Run Stage
+FROM python:3.10-slim-buster
+WORKDIR /backend-flask
 
-RUN chmod +x "./run_script.sh"
+## Create sergio user and group
+RUN addgroup --system sergio && adduser --system --ingroup sergio sergio
 
-CMD [ "./run_script.sh"]
+## Set ownership of the application directory to the sergio user and group
+RUN chown -R sergio:sergio /backend-flask
+
+RUN apt update
+
+## Copy the virtual environment from the `builder` stage 
+COPY --from=builder /venv /venv
+ENV PATH=/venv/bin:$PATH
+
+# Finally, copy in application 
+COPY . . 
+
+RUN chmod +x "run_script.sh"
+ENTRYPOINT [ "./run_script.sh" ]
