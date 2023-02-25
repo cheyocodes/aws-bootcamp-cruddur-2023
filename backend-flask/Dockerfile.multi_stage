@@ -28,7 +28,7 @@ RUN chown -R sergio:sergio /backend-flask
 FROM ${python_image}
 
 RUN apt-get update && \ 
-    apt-get install --no-install-recommends --asume-yes \ 
+    apt-get install --no-install-recommends --asumme-yes \ 
     libpq5
 
 ## Create sergio user and group
