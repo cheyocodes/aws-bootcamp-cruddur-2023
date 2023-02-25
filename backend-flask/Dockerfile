@@ -25,14 +25,19 @@ RUN addgroup --system sergio && adduser --system --ingroup sergio sergio
 ## Set ownership of the application directory to the sergio user and group
 RUN chown -R sergio:sergio /backend-flask
 
-RUN apt update && apt install curl
+
+RUN apt-get update
+RUN apt-get install -y curl
 
 ## Copy the virtual environment from the `builder` stage 
 COPY --from=builder /venv /venv
 ENV PATH=/venv/bin:$PATH
 
 # Finally, copy in application 
-COPY . . 
+COPY --chown=sergio:sergio . . 
 
 RUN chmod +x "run_script.sh"
+
+USER sergio
+
 ENTRYPOINT [ "./run_script.sh" ]
