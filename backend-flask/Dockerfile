@@ -25,7 +25,7 @@ RUN addgroup --system sergio && adduser --system --ingroup sergio sergio
 ## Set ownership of the application directory to the sergio user and group
 RUN chown -R sergio:sergio /backend-flask
 
-RUN apt update
+RUN apt update && apt install curl
 
 ## Copy the virtual environment from the `builder` stage 
 COPY --from=builder /venv /venv
