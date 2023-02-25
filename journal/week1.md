@@ -518,7 +518,10 @@ FROM python:3.10-slim-buster
 
 WORKDIR /backend-flask
 
-COPY --from=builder . .
+COPY --from=builder /root/.local /root/.local
+
+# ENV PATH=/root/.local/bin:$PATH
+COPY run_script.sh run_script.sh
 
 RUN chmod +x run_script.sh
 
@@ -528,6 +531,10 @@ EXPOSE ${PORT}
 
 CMD ["sh", "run_script.sh"]
 ```
+
+##### Resources 
+- [multi-stage docker python](https://pythonspeed.com/articles/multi-stage-docker-python/)
+
 
 **Test backend works**
 ```
