@@ -4,6 +4,15 @@ services:
     environment:
       FRONTEND_URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
       BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+      # OpenTelemetry environment variables 
+      # This is what determines the service name in the spans that get sent to your application. 
+      OTEL_SERVICE_NAME: "backend-flask"       
+      # this is the honeycomb endpoint used to send data
+      OTEL_EXPORTER_OTLP_ENDPOINT: "https://api.honeycomb.io"
+      # this variable is used to set additional headers in the OTLP requests sent by the exporter. 
+      # This can be useful in cases where the backend system requires additional authentication, 
+      # authorization or metadata information to be sent in the headers.
+      OTEL_EXPORTER_OTLP_HEADERS: "x-honeycomb-team=${HONEYCOMB_API_KEY}" 
     build: ./backend-flask
     ports:
       - "4567:4567"
