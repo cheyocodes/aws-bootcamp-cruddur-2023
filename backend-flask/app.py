@@ -26,6 +26,8 @@ from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
 # adding provider honeycomb.io
 provider = TracerProvider()
+# OTLSpanExporter() is goig to read the `OTEL_` environment variables 
+# where to send the spans. 
 processor = BatchSpanProcessor(OTLPSpanExporter())
 provider.add_span_processor(processor)
 trace.set_tracer_provider(provider)
