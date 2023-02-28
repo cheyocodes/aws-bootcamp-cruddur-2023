@@ -35,9 +35,9 @@ ENV PATH=/venv/bin:$PATH
 
 # Finally, copy in application 
 COPY --chown=sergio:sergio . . 
-
-RUN chmod +x "run_script.sh"
-
 USER sergio
+
+RUN chmod +x run_script.sh
+
 
 ENTRYPOINT [ "./run_script.sh" ]
