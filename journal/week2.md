@@ -28,12 +28,9 @@ WatchTower
 - [ ] Install WatchTower and write a custom logger to send application log data to CloudWatch Log group
 
 
-Honeycomb.io
-- [X] Instrument our backend flask application to use Open Telemetry (OTEL) with Honeycomb.io as the provider
-- [X] Run queries to explore traces within Honeycomb.io
 
 
-**Honeycomb.io**
+### Honeycomb.io
 #### Instrument our backend flask application to use Open Telemetry (OTEL) with Honeycomb.io as the provider
 
 Add python dependencies into our `requirements.txt` file and install them
