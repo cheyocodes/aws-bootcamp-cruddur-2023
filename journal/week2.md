@@ -113,7 +113,45 @@ Create span exporter to log on STDOUT
 Query new data and show on Honeycomb dashboard
 ![Query new data and show on Honeycomb dashboard](./assets/week-02/new-query-raw-data.png)
 
+#### Creating a tracer for a module manually
+[Acquiring a Tracer](https://docs.honeycomb.io/getting-data-in/opentelemetry/python/#acquiring-a-tracer)
+```python
+Adding a tracer to the `home_activities.py` file
+from opentelemetry import trace    # <------ add this
 
+# the trace is usually named after the module or the file name
+# since the file is `home_activities.py` we named the trace `home_activities`
+# alternatively we can name it "home.activities
+tracer = trace.get_tracer("home.activities") # <------ add this
+
+class HomeActivities:
+  def run():
+    with tracer.start_as_current_span("home-activities-mock-data"):
+      # do something
+      now = datetime.now(timezone.utc).astimezone()
+
+      results = [{
+        'uuid': '68f126b0-1ceb-4a33-88be-d90fa7109eee',
+        'handle':  'Andrew Brown',
+        'message': 'Cloud is very fun!',
+        'created_at': (now - timedelta(days=2)).isoformat(),
+        'expires_at': (now + timedelta(days=5)).isoformat(),
+        'likes_count': 5,
+        'replies_count': 1,
+        'reposts_count': 0,
+        'replies': [{
+          'uuid': '26e12864-1c26-5c3a-9658-97a10f8fea67',
+          'reply_to_activity_uuid': '68f126b0-1ceb-4a33-88be-d90fa7109eee',
+          'handle':  'Worf',
+          'message': 'This post has no honor!',
+          'likes_count': 0,
+          'replies_count': 0,
+          'reposts_count': 0,
+          'created_at': (now - timedelta(days=2)).isoformat()
+        }],
+      }
+    ]
+```
 
 
 
