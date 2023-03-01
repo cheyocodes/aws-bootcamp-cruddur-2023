@@ -267,6 +267,8 @@ services:
 aws xray create-sampling-rule --cli-input-json file://aws/json/xray.json
 ```
 
+![AWS X-Ray sampling rule execution result](./assets/week-02/x-ray-sampling-rule.png)
+
 #### Configure and provision X-Ray daemon within docker-compose and send data back to X-Ray API
 
 
