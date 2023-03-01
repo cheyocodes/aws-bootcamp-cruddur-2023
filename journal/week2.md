@@ -182,6 +182,93 @@ class HomeActivities:
 Finding `app.run` and `app.results_length` span attributes in Honeycomb dashboard
 ![app.now and app.result_length span attributes](./assets/week-02/app.now-and-app.result_length-attributes-honeycomb.png)
 
+
+### AWS X-Ray 
+#### Instrument AWS X-Ray into backend flask application
+
+##### [Adding X-Ray Middleware to the application](https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-python-middleware.html)
+```python
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
+
+app = Flask(__name__)
+
+xray_url = os.getenv("AWS_XRAY_URL")
+xray_recorder.configure(service='Cruddur', dynamic_naming=xray_url)
+XRayMiddleware(app, xray_recorder)
+```
+
+##### Create `aws/json/x-ray.json` file 
+```json
+{
+    "SamplingRule": {
+        "RuleName": "Cruddur",
+        "ResourceARN": "*",
+        "Priority": 9000,
+        "FixedRate": 0.1,
+        "ReservoirSize": 5,
+        "ServiceName": "backend-flask",
+        "ServiceType": "*",
+        "Host": "*",
+        "HTTPMethod": "*",
+        "URLPath": "*",
+        "Version": 1
+    }
+  }
+```
+
+##### Create an X-Ray Group
+Groups are collections of traces that are defined by a filter expression. Use groups to filter service maps, traces, or analytics. By default, you can create up to 25 groups in addition to the default group. To add more, request an increase with AWS Support.
+
+```sh
+aws xray create-group \
+   --group-name "Cruddur" \
+   --filter-expression "service(\"backend-flask\")"
+```
+
+![](./assets/week-02/aws-xray-create-group.png)
+
+![](./assets/week-02/x-ray-groups-01.png)
+
+![](./assets/week-02/x-ray-groups-02.png)
+
+##### Add AWS X-Ray environment variables to `backend-flask` service 
+```sh
+# docker-compose.yml
+version: "3.8"
+services:
+  backend-flask:
+    environment:
+      ...
+      # AWS X-Ray
+      AWS_XRAY_URL: "*4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}*"
+      AWS_XRAY_DAEMON_ADDRESS: "xray-daemon:2000"
+```
+
+##### Add AWS X-Ray Daemon to `docker-compose.yml`
+```sh
+version: "3.8"
+services: 
+  ...
+  xray-daemon:
+    image: "amazon/aws-xray-daemon"
+    environment:
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+      AWS_REGION: "us-east-1"
+    command:
+      - "xray -o -b xray-daemon:2000"
+    ports:
+      - 2000:2000/udp
+```
+
+#### Configure and provision X-Ray daemon within docker-compose and send data back to X-Ray API
+
+
+#### Observe X-Ray traces within the AWS Console
+
+
+
 ---
 
 #### Homework Challenges
