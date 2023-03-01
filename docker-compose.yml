@@ -13,6 +13,9 @@ services:
       # This can be useful in cases where the backend system requires additional authentication, 
       # authorization or metadata information to be sent in the headers.
       OTEL_EXPORTER_OTLP_HEADERS: "x-honeycomb-team=${HONEYCOMB_API_KEY}" 
+      # AWS X-Ray
+      AWS_XRAY_URL: "*4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}*"
+      AWS_XRAY_DAEMON_ADDRESS: "xray-daemon:2000"
     build: ./backend-flask
     ports:
       - "4567:4567"
