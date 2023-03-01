@@ -262,6 +262,11 @@ services:
       - 2000:2000/udp
 ```
 
+##### Create Sampling Rule 
+```sh
+aws xray create-sampling-rule --cli-input-json file://aws/json/xray.json
+```
+
 #### Configure and provision X-Ray daemon within docker-compose and send data back to X-Ray API
 
 
