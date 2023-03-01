@@ -232,6 +232,22 @@ aws xray create-group \
 
 ![](./assets/week-02/x-ray-groups-02.png)
 
+
+
+##### Create Sampling Rule 
+```sh
+aws xray create-sampling-rule --cli-input-json file://aws/json/xray.json
+```
+
+![AWS X-Ray sampling rule execution result](./assets/week-02/x-ray-sampling-rule.png)
+
+
+
+
+
+
+#### Configure and provision X-Ray daemon within docker-compose and send data back to X-Ray API
+
 ##### Add AWS X-Ray environment variables to `backend-flask` service 
 ```sh
 # docker-compose.yml
@@ -262,14 +278,6 @@ services:
       - 2000:2000/udp
 ```
 
-##### Create Sampling Rule 
-```sh
-aws xray create-sampling-rule --cli-input-json file://aws/json/xray.json
-```
-
-![AWS X-Ray sampling rule execution result](./assets/week-02/x-ray-sampling-rule.png)
-
-#### Configure and provision X-Ray daemon within docker-compose and send data back to X-Ray API
 
 
 #### Observe X-Ray traces within the AWS Console
