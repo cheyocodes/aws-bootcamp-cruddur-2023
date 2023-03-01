@@ -241,7 +241,9 @@ aws xray create-sampling-rule --cli-input-json file://aws/json/xray.json
 
 ![AWS X-Ray sampling rule execution result](./assets/week-02/x-ray-sampling-rule.png)
 
-
+Sampling AWS console view
+![](./assets/week-02/aws-x-ray-console-sampling-01.png)
+![](./assets/week-02/aws-x-ray-console-sampling-02.png)
 
 
 
