@@ -3,11 +3,11 @@
 ## Week 2 Todo Tasks  
 - [X] [Watch Week 2 Live-Stream Video](https://www.youtube.com/watch?v=2GD9xCzRId4&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=30)
 - [ ] [Watch Chirag Week 2 - Spending Considerations (Coming Soon)]()
-- [ ] [Watched Ashish's Week 2 - Observability Security Considerations](https://www.youtube.com/watch?v=bOf4ITxAcXc&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=31)
+- [X] [Watched Ashish's Week 2 - Observability Security Considerations](https://www.youtube.com/watch?v=bOf4ITxAcXc&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=31)
 - [X] [Instrument Honeycomb with OTEL](https://www.youtube.com/watch?v=2GD9xCzRId4&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=30)
 - [X] [Instrument AWS X-Ray](https://www.youtube.com/watch?v=n2DTsuBrD_A&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=32)
 - [X] [Configure custom logger to send to CloudWatch Logs](https://www.youtube.com/watch?v=ipdFizZjOF4&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=33)
-- [ ] [Integrate Rollbar and capture and error](https://www.youtube.com/watch?v=xMBDAb5SEU4&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=35)
+- [X] [Integrate Rollbar and capture and error](https://www.youtube.com/watch?v=xMBDAb5SEU4&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=35)
 q
 
 ## Technical Tasks 
@@ -395,12 +395,14 @@ def init_rollbar():
 ```
 
 Show warning in Rollbar
-![](./)
+![Rollbar Warning 1](./assets/week-02/rollbar-01.png)
+![Rollbar Warning 2](./assets/week-02/rollbar-02.png)
 
 #### Trigger an error an observe an error with Rollbar
 
+![Rollbar error 1](./assets/week-02/rollbar-01.png)
 
-
+![Rollbar error 2](./assets/week-02/rollbar-02.png)
 
 
 
