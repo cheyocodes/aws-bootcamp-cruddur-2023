@@ -20,13 +20,12 @@ AWS X-Ray
 - [X] Configure and provision X-Ray daemon within docker-compose and send data back to X-Ray API
 - [X] Observe X-Ray traces within the AWS Console
 
-Rollbar
-- [ ] Integrate Rollbar for Error Logging
-- [ ] Trigger an error an observe an error with Rollbar
-
 WatchTower
 - [X] Install WatchTower and write a custom logger to send application log data to CloudWatch Log group
 
+Rollbar
+- [ ] Integrate Rollbar for Error Logging
+- [ ] Trigger an error an observe an error with Rollbar
 
 
 
@@ -323,25 +322,82 @@ LOGGER.info("test Log")
 
 
 app = Flask(__name__)
+
+@app.route("/api/activities/home", methods=['GET'])
+def data_home():
+  data = HomeActivities.run(logger=LOGGER) # use this when logging
+  return data, 200
 ```
+
+
 
 Add logger to `home_activities.py`
 ```python 
-import logging
-
-tracer = trace.get_tracer("home.activities")
-
 class HomeActivities:
-  def run():
-    LOGGER.info("HomeActivities")
+  def run(logger):
+    logger.info("HomeActivities")
     ...
 ```
+
 
 ![CloudWatch logs](./assets/week-02/cloudwatch-logs-group.png)
 
 
 
 
+### Rollbar
+#### Integrate Rollbar for Error Logging
+
+Add `rollbar` and `blinker` to `requirements.txt` file 
+```sh
+# requirements.txt
+...
+blinker
+rollbar
+```
+
+Add rollbar access token environment variable to flask backend
+```sh
+version: "3.8"
+services:
+  backend-flask:
+    environment:
+      ## Add rollbar access token environment variables
+      ROLLBAR_ACCESS_TOKEN: "${ROLLBAR_ACCESS_TOKEN}"
+```
+
+Add rollbar instrumentation to `app.py`
+```python
+# Rollbar 
+import rollbar
+import rollbar.contrib.flask
+from flask import got_request_exception
+
+app = Flask(__name__)
+
+rollbar_access_token = os.getenv('ROLLBAR_ACCESS_TOKEN')
+
+@app.before_first_request
+def init_rollbar():
+    """init rollbar module"""
+    rollbar.init(
+        # access token
+        rollbar_access_token,
+        # environment name
+        'production',
+        # server root directory, makes tracebacks prettier
+        root=os.path.dirname(os.path.realpath(__file__)),
+        # flask already sets up logging
+        allow_logging_basic_config=False)
+
+    # send exceptions from `app` to rollbar, using flask's signal system.
+    got_request_exception.connect(rollbar.contrib.flask.report_exception, app)
+```
+
+Show warning in Rollbar
+![](./)
+
+#### Trigger an error an observe an error with Rollbar
 
 
 
