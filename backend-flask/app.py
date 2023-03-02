@@ -179,10 +179,12 @@ def data_notifications():
   data = NotificationsActivities.run()
   return data, 200
 
-@app.route("/api/activities/@<string:handle>", methods=['GET'])
+@app.route("/api/activities/@<string:user_handle>", methods=['GET'])
 @xray_recorder.capture('activities_users')
-def data_handle(handle):
-  model = UserActivities.run(handle)
+def data_handle(user_handle):
+  user = UserActivities(xray_recorder, request)
+  model = user.run(user_handle)
+  
   if model['errors'] is not None:
     return model['errors'], 422
   else:
