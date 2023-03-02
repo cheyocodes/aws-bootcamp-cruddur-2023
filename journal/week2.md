@@ -5,10 +5,10 @@
 - [ ] [Watch Chirag Week 2 - Spending Considerations (Coming Soon)]()
 - [ ] [Watched Ashish's Week 2 - Observability Security Considerations](https://www.youtube.com/watch?v=bOf4ITxAcXc&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=31)
 - [X] [Instrument Honeycomb with OTEL](https://www.youtube.com/watch?v=2GD9xCzRId4&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=30)
-- [ ] [Instrument AWS X-Ray](https://www.youtube.com/watch?v=n2DTsuBrD_A&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=32)
+- [X] [Instrument AWS X-Ray](https://www.youtube.com/watch?v=n2DTsuBrD_A&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=32)
 - [ ] [Configure custom logger to send to CloudWatch Logs](https://www.youtube.com/watch?v=ipdFizZjOF4&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=33)
 - [ ] [Integrate Rollbar and capture and error](https://www.youtube.com/watch?v=xMBDAb5SEU4&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=35)
-
+q
 
 ## Technical Tasks 
 Honeycomb.io
@@ -16,9 +16,9 @@ Honeycomb.io
 - [X] Run queries to explore traces within Honeycomb.io
 
 AWS X-Ray
-- [ ] Instrument AWS X-Ray into backend flask application
-- [ ] Configure and provision X-Ray daemon within docker-compose and send data back to X-Ray API
-- [ ] Observe X-Ray traces within the AWS Console
+- [X] Instrument AWS X-Ray into backend flask application
+- [X] Configure and provision X-Ray daemon within docker-compose and send data back to X-Ray API
+- [X] Observe X-Ray traces within the AWS Console
 
 Rollbar
 - [ ] Integrate Rollbar for Error Logging
@@ -226,11 +226,11 @@ aws xray create-group \
    --filter-expression "service(\"backend-flask\")"
 ```
 
-![](./assets/week-02/aws-xray-create-group.png)
+![AWS X-Ray Crate Group](./assets/week-02/aws-xray-create-group.png)
 
-![](./assets/week-02/x-ray-groups-01.png)
+![AWS X-Ray Group console](./assets/week-02/x-ray-groups-01.png)
 
-![](./assets/week-02/x-ray-groups-02.png)
+![AWS X-Ray Group Console](./assets/week-02/x-ray-groups-02.png)
 
 
 
@@ -242,8 +242,8 @@ aws xray create-sampling-rule --cli-input-json file://aws/json/xray.json
 ![AWS X-Ray sampling rule execution result](./assets/week-02/x-ray-sampling-rule.png)
 
 Sampling AWS console view
-![](./assets/week-02/aws-x-ray-console-sampling-01.png)
-![](./assets/week-02/aws-x-ray-console-sampling-02.png)
+![AWS X-Ray Sampling 1](./assets/week-02/aws-x-ray-console-sampling-01.png)
+![AWS X-Ray Sampling 2](./assets/week-02/aws-x-ray-console-sampling-02.png)
 
 
 
@@ -284,8 +284,11 @@ services:
 
 #### Observe X-Ray traces within the AWS Console
 
+![AWS X-Ray Service Map console](./assets/week-02/aws-x-ray-service-map-console.png)
 
+![AWS X-Ray Traces List](./assets/week-02/aws-x-ray-traces-console.png)
 
+![AWS X-Ray Single Trace](./assets/week-02/single-trace-console.png)
 ---
 
 #### Homework Challenges
