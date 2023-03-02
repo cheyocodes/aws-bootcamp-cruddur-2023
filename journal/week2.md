@@ -400,9 +400,9 @@ Show warning in Rollbar
 
 #### Trigger an error an observe an error with Rollbar
 
-![Rollbar error 1](./assets/week-02/rollbar-01.png)
+![Rollbar error 1](./assets/week-02/rollbar-error-01.png)
 
-![Rollbar error 2](./assets/week-02/rollbar-02.png)
+![Rollbar error 2](./assets/week-02/rollbar-error-02.png)
 
 
 
