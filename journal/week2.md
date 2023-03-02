@@ -6,7 +6,7 @@
 - [ ] [Watched Ashish's Week 2 - Observability Security Considerations](https://www.youtube.com/watch?v=bOf4ITxAcXc&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=31)
 - [X] [Instrument Honeycomb with OTEL](https://www.youtube.com/watch?v=2GD9xCzRId4&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=30)
 - [X] [Instrument AWS X-Ray](https://www.youtube.com/watch?v=n2DTsuBrD_A&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=32)
-- [ ] [Configure custom logger to send to CloudWatch Logs](https://www.youtube.com/watch?v=ipdFizZjOF4&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=33)
+- [X] [Configure custom logger to send to CloudWatch Logs](https://www.youtube.com/watch?v=ipdFizZjOF4&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=33)
 - [ ] [Integrate Rollbar and capture and error](https://www.youtube.com/watch?v=xMBDAb5SEU4&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=35)
 q
 
@@ -25,7 +25,7 @@ Rollbar
 - [ ] Trigger an error an observe an error with Rollbar
 
 WatchTower
-- [ ] Install WatchTower and write a custom logger to send application log data to CloudWatch Log group
+- [X] Install WatchTower and write a custom logger to send application log data to CloudWatch Log group
 
 
 
@@ -289,6 +289,68 @@ services:
 ![AWS X-Ray Traces List](./assets/week-02/aws-x-ray-traces-console.png)
 
 ![AWS X-Ray Single Trace](./assets/week-02/single-trace-console.png)
+
+
+### WatchTower
+#### Install WatchTower and write a custom logger to send application log data to CloudWatch Log group
+
+Add `watchtower` package to `requirements.txt` 
+```sh
+# requirements.txt
+...
+watchtower 
+```
+
+Add dependencies to `app.py` 
+```python
+import watchtower 
+import logging 
+from time import strftime
+```
+
+Add watchtower instrumentation
+```python
+# CloudWatch 
+# Configuring Logger to Use CloudWatch
+LOGGER = logging.getLogger(__name__)
+LOGGER.setLevel(logging.DEBUG)
+console_handler = logging.StreamHandler()
+cw_handler = watchtower.CloudWatchLogHandler(log_group='cruddur')
+LOGGER.addHandler(console_handler)
+LOGGER.addHandler(cw_handler)
+LOGGER.info("HomeActivities")
+LOGGER.info("test Log")
+
+
+app = Flask(__name__)
+```
+
+Add logger to `home_activities.py`
+```python 
+import logging
+
+tracer = trace.get_tracer("home.activities")
+
+class HomeActivities:
+  def run():
+    LOGGER.info("HomeActivities")
+    ...
+```
+
+![CloudWatch logs](./assets/week-02/cloudwatch-logs-group.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
 ---
 
 #### Homework Challenges
