@@ -24,8 +24,8 @@ WatchTower
 - [X] Install WatchTower and write a custom logger to send application log data to CloudWatch Log group
 
 Rollbar
-- [ ] Integrate Rollbar for Error Logging
-- [ ] Trigger an error an observe an error with Rollbar
+- [X] Integrate Rollbar for Error Logging
+- [X] Trigger an error an observe an error with Rollbar
 
 
 
@@ -412,10 +412,10 @@ Show warning in Rollbar
 ---
 
 #### Homework Challenges
-- [ ] Instrument Honeycomb for the frontend-application to observe network latency between frontend and backend [HARD]
 - [ ] Add custom instrumentation to Honeycomb to add more attributes eg. `UserId`, Add a `custom span`
 - [ ] Run custom queries in Honeycomb and save them later eg. Latency by `UserID`, Add `Recent Traces`
+- [ ] Instrument Honeycomb for the frontend-application to observe network latency between frontend and backend [HARD]
 
-### Instrument Honeycomb for the frontend-application to observe network latency between frontend and backend [HARD]
 ### Add custom instrumentation to Honeycomb to add more attributes eg. `UserId`, Add a `custom span`
 ### Run custom queries in Honeycomb and save them later eg. Latency by `UserID`, Add `Recent Traces`
+### Instrument Honeycomb for the frontend-application to observe network latency between frontend and backend [HARD]
