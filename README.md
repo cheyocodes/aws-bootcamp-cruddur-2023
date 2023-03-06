@@ -17,17 +17,17 @@ At the start of the bootcamp you need to create a new Github Repository from thi
 
 The `/journal` directory contains
 
-- [X] [Week 0](journal/week0.md)
-- [X] [Week 1](journal/week1.md)
-- [ ] [Week 2](journal/week2.md) --> IN PROGRESS
-- [ ] [Week 3](journal/week3.md)
-- [ ] [Week 4](journal/week4.md)
-- [ ] [Week 5](journal/week5.md)
-- [ ] [Week 6](journal/week6.md)
-- [ ] [Week 7](journal/week7.md)
-- [ ] [Week 8](journal/week8.md)
-- [ ] [Week 9](journal/week9.md)
-- [ ] [Week 10](journal/week10.md)
-- [ ] [Week 11](journal/week11.md)
-- [ ] [Week 12](journal/week12.md)
+- [X] [Week 0](journal/week0.md) - Bootcamp Prep
+- [X] [Week 1](journal/week1.md) - Docker 
+- [X] [Week 2](journal/week2.md) - Distributed Tracing 
+- [ ] [Week 3](journal/week3.md) - Decentralized Authentication 👈👈👈 **In Progress**
+- [ ] [Week 4](journal/week4.md) - SQL Databases
+- [ ] [Week 5](journal/week5.md) - NoSQL Database 
+- [ ] [Week 6](journal/week6.md) - Serverless Containers
+- [ ] [Week 7](journal/week7.md) - Solving CORS issues 
+- [ ] [Week 8](journal/week8.md) - Serverless Image processing
+- [ ] [Week 9](journal/week9.md) - CI/CD 
+- [ ] [Week 10](journal/week10.md) - CloudFormation (1/2)
+- [ ] [Week 11](journal/week11.md) - CloudFormation (2/2)
+- [ ] [Week 12](journal/week12.md) - Modern APIs and AppSync
 - [ ] [Week 13](journal/week13.md)
