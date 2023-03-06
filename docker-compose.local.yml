@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  backend-flask:
+    env_file: 
+      - ./docker/local/backend-flask.env
+  frontend-react-js:
+    env_file: 
+      - ./docker/local/frontend-react-js.env
+  xray-daemon:
+    env_file: 
+      - ./docker/local/xray-daemon.env
