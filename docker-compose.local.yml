@@ -6,6 +6,6 @@ services:
   frontend-react-js:
     env_file: 
       - ./docker/local/frontend-react-js.env
-  xray-daemon:
-    env_file: 
-      - ./docker/local/xray-daemon.env 
+  # xray-daemon:
+  #   env_file: 
+  #     - ./docker/local/xray-daemon.env 

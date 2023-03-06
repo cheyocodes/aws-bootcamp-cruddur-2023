@@ -10,7 +10,7 @@ services:
       # The --fail option in curl is used to fail silently and exit with a non-zero status code 
       # if the HTTP response status code is not successful (i.e., not in the 200-299 range). 
       # This is commonly used in scripts to determine if a resource is available or not.
-      test: "curl --fail ${BACKEND_HEALTH_CHECK_URL}"
+      test: "curl --fail $(BACKEND_HEALTH_CHECK_URL)"
       interval: 30s
       timeout: 10s
       retries: 3
