@@ -17,10 +17,10 @@ At the start of the bootcamp you need to create a new Github Repository from thi
 
 The `/journal` directory contains
 
-- [X] [Week 0](journal/week0.md) - Bootcamp Prep
-- [X] [Week 1](journal/week1.md) - Docker 
-- [X] [Week 2](journal/week2.md) - Distributed Tracing 
-- [ ] [Week 3](journal/week3.md) - Decentralized Authentication 👈👈👈 **In Progress**
+- [X] [Week 0](journal/week0.md) - **Bootcamp Prep**
+- [X] [Week 1](journal/week1.md) - **Docker** 
+- [X] [Week 2](journal/week2.md) - **Distributed Tracing**
+- [ ] [Week 3](journal/week3.md) - Decentralized Authentication 👈👈👈 *IN PROGRESS*
 - [ ] [Week 4](journal/week4.md) - SQL Databases
 - [ ] [Week 5](journal/week5.md) - NoSQL Database 
 - [ ] [Week 6](journal/week6.md) - Serverless Containers
@@ -30,4 +30,4 @@ The `/journal` directory contains
 - [ ] [Week 10](journal/week10.md) - CloudFormation (1/2)
 - [ ] [Week 11](journal/week11.md) - CloudFormation (2/2)
 - [ ] [Week 12](journal/week12.md) - Modern APIs and AppSync
-- [ ] [Week 13](journal/week13.md)
+- [ ] [Week 13](journal/week13.md) - ?
