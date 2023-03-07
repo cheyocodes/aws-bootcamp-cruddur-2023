@@ -11,6 +11,11 @@ import MessageGroupPage from './pages/MessageGroupPage';
 import ConfirmationPage from './pages/ConfirmationPage';
 import React from 'react';
 // import process from 'process';
+
+// Import amplify library 
+import { Amplify } from 'aws-amplify';
+
+
 import {
   createBrowserRouter,
   RouterProvider
