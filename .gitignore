@@ -5,3 +5,4 @@ docker/**/*
 notes
 setup.py
 .env
+.vscode
