@@ -17,8 +17,8 @@ from services.create_message import *
 from services.show_activity import *
 
 ## X-RAY 
-from aws_xray_sdk.core import xray_recorder
-from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
+# from aws_xray_sdk.core import xray_recorder
+# from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 
 
 # Honeycomb.io
@@ -76,13 +76,13 @@ FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
 
 # X-ray 
-xray_url = os.getenv("AWS_XRAY_URL")
-xray_recorder.configure(
-  service='backend-flask', 
-  dynamic_naming=xray_url
-)
+# xray_url = os.getenv("AWS_XRAY_URL")
+# xray_recorder.configure(
+#   service='backend-flask', 
+#   dynamic_naming=xray_url
+# )
 
-XRayMiddleware(app, xray_recorder)
+# XRayMiddleware(app, xray_recorder)
 
 
 
@@ -168,7 +168,7 @@ def data_create_message():
   return
 
 @app.route("/api/activities/home", methods=['GET'])
-@xray_recorder.capture('activities_home')
+# @xray_recorder.capture('activities_home')
 def data_home():
   # data = HomeActivities.run(logger=LOGGER) # use this when logging
   data = HomeActivities.run()
@@ -180,7 +180,7 @@ def data_notifications():
   return data, 200
 
 @app.route("/api/activities/@<string:user_handle>", methods=['GET'])
-@xray_recorder.capture('activities_users')
+# @xray_recorder.capture('activities_users')
 def data_handle(user_handle):
   user = UserActivities(xray_recorder, request)
   model = user.run(user_handle)
