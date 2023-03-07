@@ -3,6 +3,12 @@ import './App.css';
 // Import amplify library 
 import { Amplify } from 'aws-amplify';
 
+import {
+  createBrowserRouter,
+  RouterProvider
+} from "react-router-dom";
+
+
 import HomeFeedPage from './pages/HomeFeedPage';
 import NotificationsFeedPage from './pages/NotificationsFeedPage';
 import UserFeedPage from './pages/UserFeedPage';
@@ -16,11 +22,14 @@ import React from 'react';
 // import process from 'process';
 
 Amplify.configure({
+  // top level configuration
   "AWS_PROJECT_REGION": process.env.REACT_APP_AWS_PROJECT_REGION,
   "aws_cognito_region": process.env.REACT_APP_AWS_COGNITO_REGION,
   "aws_user_pools_id": process.env.REACT_APP_AWS_USER_POOLS_ID,
   "aws_user_pools_web_client_id": process.env.REACT_APP_CLIENT_ID,
   "oauth": {},
+
+  // Scoped configuration 
   Auth: {
     // We are not using an Identity Pool
     // identityPoolId: process.env.REACT_APP_IDENTITY_POOL_ID, 
@@ -35,10 +44,6 @@ Amplify.configure({
 });
 
 
-import {
-  createBrowserRouter,
-  RouterProvider
-} from "react-router-dom";
 
 const router = createBrowserRouter([
   {
