@@ -28,6 +28,7 @@ services:
       - "4567:4567"
     volumes:
       - ./backend-flask:/backend-flask
+      - ./backend-flask/venv
     healthcheck:
       # The --fail option in curl is used to fail silently and exit with a non-zero status code 
       # if the HTTP response status code is not successful (i.e., not in the 200-299 range). 
