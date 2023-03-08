@@ -1,8 +1,10 @@
 # App dependencies 
-from flask import Flask
-from flask import request
+from flask import Flask, request, redirect, jsonify
 from flask_cors import CORS, cross_origin
 import os
+
+# AWS Cognito server side authentication
+from flask_awscognito import AWSCognitoAuthentication
 
 # Application services
 from services.home_activities import *
@@ -68,6 +70,10 @@ tracer = trace.get_tracer(__name__)
 
 
 app = Flask(__name__)
+
+# Env vars for cognito 
+app.config['AWS_COGNITO_USER_POOL_ID'] = os.getenv("AWS_COGNITO_USER_POOL_ID")
+app.config['AWS_COGNITO_USER_POOL_CLIENT_ID'] = os.getenv("AWS_COGNITO_USER_POOL_CLIENT_ID")
 
 
 # Honeycomb.io 

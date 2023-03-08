@@ -23,13 +23,15 @@ services:
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
       ## Add rollbar access token environment variables
       ROLLBAR_ACCESS_TOKEN: "${ROLLBAR_ACCESS_TOKEN}"
-
+      
+      # Cognito server side token validation env vars
+      AWS_COGNITO_USER_POOL_ID: "${AWS_COGNITO_USER_POOL_ID}"
+      AWS_COGNITO_USER_POOL_CLIENT_ID: "${AWS_COGNITO_USER_POOL_CLIENT_ID}"
     build: ./backend-flask
     ports:
       - "4567:4567"
     volumes:
       - ./backend-flask:/backend-flask
-      - ./backend-flask/venv
     healthcheck:
       # The --fail option in curl is used to fail silently and exit with a non-zero status code 
       # if the HTTP response status code is not successful (i.e., not in the 200-299 range). 
