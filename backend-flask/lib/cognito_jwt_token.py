@@ -3,13 +3,22 @@ import requests
 from jose import jwk, jwt
 from jose.exceptions import JOSEError
 from jose.utils import base64url_decode
-from flask_awscognito.exceptions import FlaskAWSCognitoError, TokenVerifyError
 
+class FlaskAWSCognitoError(Exception):
+  pass
 
-class CognitoTokenVerification:
+class TokenVerifyError(Exception):
+  pass
+
+def extract_access_token(request_headers):
+    access_token = None
+    auth_header = request_headers.get("Authorization")
+    if auth_header and " " in auth_header:
+        _, access_token = auth_header.split()
+    return access_token
+
+class CognitoJwtToken:
     def __init__(self, user_pool_id, user_pool_client_id, region, request_client=None):
-        """Initialize class instance with required Cognito pool parameters and set a default HTTP get client."""
-
         self.region = region
         if not self.region:
             raise FlaskAWSCognitoError("No AWS region provided")
@@ -22,8 +31,8 @@ class CognitoTokenVerification:
             self.request_client = request_client
         self._load_jwk_keys()
 
+
     def _load_jwk_keys(self):
-        """Load JSON Web Key (JWK) from AWS Cognito to validate tokens."""
         keys_url = f"https://cognito-idp.{self.region}.amazonaws.com/{self.user_pool_id}/.well-known/jwks.json"
         try:
             response = self.request_client(keys_url)
@@ -33,7 +42,6 @@ class CognitoTokenVerification:
 
     @staticmethod
     def _extract_headers(token):
-        """Extract headers embedded in JWT token."""
         try:
             headers = jwt.get_unverified_headers(token)
             return headers
@@ -41,7 +49,6 @@ class CognitoTokenVerification:
             raise TokenVerifyError(str(e)) from e
 
     def _find_pkey(self, headers):
-        """Find matching public key for the given token header."""
         kid = headers["kid"]
         # search for the kid in the downloaded public keys
         key_index = -1
@@ -55,7 +62,6 @@ class CognitoTokenVerification:
 
     @staticmethod
     def _verify_signature(token, pkey_data):
-        """Verify signature of the provided token against the corresponding public key."""
         try:
             # construct the public key
             public_key = jwk.construct(pkey_data)
@@ -72,7 +78,6 @@ class CognitoTokenVerification:
 
     @staticmethod
     def _extract_claims(token):
-        """Extract claims/payloads of the provided token."""
         try:
             claims = jwt.get_unverified_claims(token)
             return claims
@@ -81,22 +86,19 @@ class CognitoTokenVerification:
 
     @staticmethod
     def _check_expiration(claims, current_time):
-        """Check if the provided token is expired."""
         if not current_time:
             current_time = time.time()
         if current_time > claims["exp"]:
             raise TokenVerifyError("Token is expired")  # probably another exception
 
     def _check_audience(self, claims):
-        """Verify if the token's intended audience/target matches the expected one."""
         # and the Audience  (use claims['client_id'] if verifying an access token)
         audience = claims["aud"] if "aud" in claims else claims["client_id"]
         if audience != self.user_pool_client_id:
             raise TokenVerifyError("Token was not issued for this audience")
 
     def verify(self, token, current_time=None):
-        """Token verification method that validates the token with all necessary checks listed."""
-        # https://github.com/awslabs/aws-support-tools/blob/master/Cognito/decode-verify-jwt/decode-verify-jwt.py
+        """ https://github.com/awslabs/aws-support-tools/blob/master/Cognito/decode-verify-jwt/decode-verify-jwt.py """
         if not token:
             raise TokenVerifyError("No token provided")
 
@@ -108,13 +110,5 @@ class CognitoTokenVerification:
         self._check_expiration(claims, current_time)
         self._check_audience(claims)
 
-        self.claims = claims
-
-
-# In the given Python code, "claims" is an attribute of the class CognitoTokenVerification. 
-
-# The purpose of this attribute is to store a dictionary that represents the information extracted from the JWT token. 
-
-# The information can include user details, permissions or any other relevant data about the user.
-
-# This attribute is being set in the "verify" method of the class after performing various checks on the validity of the token.
+        self.claims = claims 
+        return claims
