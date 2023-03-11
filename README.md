@@ -20,8 +20,8 @@ The `/journal` directory contains
 - [X] [Week 0](journal/week0.md) - **Bootcamp Prep**
 - [X] [Week 1](journal/week1.md) - **Docker** 
 - [X] [Week 2](journal/week2.md) - **Distributed Tracing**
-- [ ] [Week 3](journal/week3.md) - Decentralized Authentication 👈👈👈 *IN PROGRESS*
-- [ ] [Week 4](journal/week4.md) - SQL Databases
+- [X] [Week 3](journal/week3.md) - **Decentralized Authentication**
+- [ ] [Week 4](journal/week4.md) - SQL Databases 👈👈👈 *IN PROGRESS*
 - [ ] [Week 5](journal/week5.md) - NoSQL Database 
 - [ ] [Week 6](journal/week6.md) - Serverless Containers
 - [ ] [Week 7](journal/week7.md) - Solving CORS issues 
