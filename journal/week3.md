@@ -323,7 +323,7 @@ import { Auth } from "aws-amplify";
   }
 ```
 
-### Watch about different approaches to verifying JWTs
+### Server-side token verification
 Frontend setup 
 ```js
 // HomeFeedPage.js
@@ -508,6 +508,10 @@ class CognitoJwtToken:
         return claims
 ```
 
+### Watch about different approaches to verifying JWTs
+![Side Car container pattern](./assets/week-03/cognito-19.png)
+
+![Lambda Authorizers](./assets/week-03/cognito-20.png)
 
 
 ---
