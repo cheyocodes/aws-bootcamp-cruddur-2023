@@ -1,0 +1,24 @@
+#! /bin/bash
+
+CYAN='\033[1;36m'
+NO_COLOR='\033[0m'
+LABEL="db-seed"
+printf "${CYAN}== ${LABEL}${NO_COLOR}\n"
+
+# echo "ARG FIRST"
+# print $0
+echo "db-schema-load"
+
+seed_path="$(realpath .)/db/schema.sql"
+echo $seed_path
+
+if [ "$1" = "prod" ]; then  
+    echo "using production"
+    URL=$PRODU_CONNECTION_URL
+else 
+    URL=$CONNECTION_URL
+fi
+
+psql $CONN_URL cruddur < $seed_path
+
+

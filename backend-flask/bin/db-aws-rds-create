@@ -1,0 +1,117 @@
+#! /bin/bash
+
+export AWS_CLI_AUTO_PROMPT=off
+
+create_rds_database() {
+    if [ -z "$1" ]; then 
+        echo "Error: You must provide an RDS instance identifier!" 
+        exit 1
+    fi
+
+    if [ -z "$2" ] || [ -z "$RDS_MASTER_USER_USERNAME" ]; then 
+        echo "Error: You must provide an RDS master user name!" 
+        exit 1
+    else 
+        export RDS_MASTER_USER_USERNAME="$2"
+    fi
+    
+    if [ -z "$3" ] || [ -z "$RDS_MASTER_USER_PASSWORD" ]; then 
+        echo "Error: You must provider a user master password for your RDS instance."
+        echo "Either provide one as a second argument or set the 'RDS_MASTER_USER_PASSWORD' environment variable."
+        echo "Alternatively, you can also allow the script to generate one for you"
+        echo ""
+        read -p "Would you like to automatically generate a password? (y/n) " generate_password
+        if [ "$generate_password" == "y" ]; then
+            generated_password=$(pwgen -c -n -s -1 36) #  you can also use openssl --> $(openssl rand -base64 12) 
+            export RDS_MASTER_USER_PASSWORD="$generated_password"
+        else
+            echo "Exiting..."
+            exit 1
+        fi
+    fi
+
+    local db_identifier="$1"
+    local db_instance_class="db.t3.micro"
+    local engine="postgres"
+    local engine_version="14.6"
+    local master_username="$RDS_MASTER_USER_USERNAME"
+    local master_user_password="$RDS_MASTER_USER_PASSWORD"
+    local allocated_storage=20
+    local availability_zone="us-east-1a"
+    local backup_retention_period=0
+    local port=5432
+    local db_name="cruddur"
+    local storage_type="gp2"
+    local publicly_accessible="--publicly-accessible" # we can change this later to private if we wanted more security
+    local storage_encrypted="--storage-encrypted"
+    local enable_performance_insights="--enable-performance-insights"
+    local performance_insights_retention_period=7
+    # local character_set_name="utf8" # cannot be set with postgres
+    # local timezone="UTC"            # cannot be set with postgres
+    local deletion_protection="--no-deletion-protection"
+    local db_exists=$(aws rds describe-db-instances --db-instance-identifier $db_identifier &>/dev/null)
+
+    if [ -n "$db_exists" ]; then
+        echo "Error: Database $db_identifier already exists."
+        exit 1
+        # Using return would allow the calling code to make the decision to continue executing or not based on the return value of the function, while using exit would immediately terminate the function and return control to the calling code or shell.
+        # return 0
+    fi
+
+    # exports `RDS_DB_INSTANCE_ID` environment globally 
+    export RDS_DB_INSTANCE_ID=$(aws rds create-db-instance \
+        --db-instance-identifier $db_identifier \
+        --db-instance-class $db_instance_class \
+        --engine $engine \
+        --engine-version $engine_version \
+        --master-username $master_username \
+        --master-user-password $master_user_password \
+        --allocated-storage $allocated_storage \
+        --availability-zone $availability_zone \
+        --backup-retention-period $backup_retention_period \
+        --port $port \
+        --no-multi-az \
+        --db-name $db_name \
+        --storage-type $storage_type \
+        --performance-insights-retention-period $performance_insights_retention_period \
+        $publicly_accessible \
+        $storage_encrypted \
+        $enable_performance_insights \
+        # --character-set-name "$character_set_name" \
+        # --timezone "$timezone" \ # You cannot specify a timezone when using postgresql 
+                                   # you can remove this. I just left it as a reminder.
+                                   # we'll use the `--no-timezone` instead
+        $deletion_protection
+        --query 'DBInstance.DBInstanceIdentifier' \
+        --output text)
+
+    echo "Creating database instance..."
+
+    # loop to wait for the RDS instance to be created and the endpoint to be available
+    while true; do
+        local endpoint=$(aws rds describe-db-instances \
+            --db-instance-identifier $RDS_DB_INSTANCE_ID \
+            --query 'DBInstances[0].Endpoint.Address' \
+            --output text 2>/dev/null)
+
+        echo "Waiting for database instance to be ready..."
+        sleep 10
+
+        if [ ! -z "$endpoint" ]; then
+            export RDS_DB_INSTANCE_ENDPOINT=$(echo $endpoint | sed 's/tcp://')
+            echo "Database instance created successfully!!"
+            echo "----------------------------------------"
+            echo "RDS Database Name (aka database identifier): $db_identifier" 
+            echo "RDS Database Instance ID : $RDS_DB_INSTANCE_ID"
+            echo "RDS Databse Endpoint: $RDS_DB_INSTANCE_ENDPOINT"
+            echo "RDS Database Master Password: $RDS_MASTER_USER_PASSWORD"
+            exit 0
+        fi
+
+        
+    done
+}
+
+
+# ./create_rds_database  $db_identifier  master_username  master_user_password
+create_rds_database $1 $2 $3
