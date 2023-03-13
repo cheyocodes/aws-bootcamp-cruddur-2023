@@ -3,9 +3,11 @@
 export AWS_CLI_AUTO_PROMPT=off
 
 create_rds_database() {
-    if [ -z "$1" ]; then 
+    if [ -z "$1" ] || [ -z "$RDS_DB_INSTANCE_ID" ]; then 
         echo "Error: You must provide an RDS instance identifier!" 
         exit 1
+    else
+        export RDS_DB_INSTANCE_ID="$1"
     fi
 
     if [ -z "$2" ] || [ -z "$RDS_MASTER_USER_USERNAME" ]; then 
@@ -30,7 +32,7 @@ create_rds_database() {
         fi
     fi
 
-    local db_identifier="$1"
+    local db_identifier="$RDS_DB_INSTANCE_ID"
     local db_instance_class="db.t3.micro"
     local engine="postgres"
     local engine_version="14.6"
@@ -59,7 +61,7 @@ create_rds_database() {
     fi
 
     # exports `RDS_DB_INSTANCE_ID` environment globally 
-    export RDS_DB_INSTANCE_ID=$(aws rds create-db-instance \
+    aws rds create-db-instance \
         --db-instance-identifier $db_identifier \
         --db-instance-class $db_instance_class \
         --engine $engine \
@@ -82,15 +84,13 @@ create_rds_database() {
                                    # you can remove this. I just left it as a reminder.
                                    # we'll use the `--no-timezone` instead
         $deletion_protection
-        --query 'DBInstance.DBInstanceIdentifier' \
-        --output text)
 
     echo "Creating database instance..."
 
     # loop to wait for the RDS instance to be created and the endpoint to be available
     while true; do
         local endpoint=$(aws rds describe-db-instances \
-            --db-instance-identifier $RDS_DB_INSTANCE_ID \
+            --db-instance-identifier $db_identifier \
             --query 'DBInstances[0].Endpoint.Address' \
             --output text 2>/dev/null)
 
@@ -101,14 +101,12 @@ create_rds_database() {
             export RDS_DB_INSTANCE_ENDPOINT=$(echo $endpoint | sed 's/tcp://')
             echo "Database instance created successfully!!"
             echo "----------------------------------------"
-            echo "RDS Database Name (aka database identifier): $db_identifier" 
             echo "RDS Database Instance ID : $RDS_DB_INSTANCE_ID"
             echo "RDS Databse Endpoint: $RDS_DB_INSTANCE_ENDPOINT"
+            echo "RDS Database Master User Username: $RDS_MASTER_USER_USERNAME"
             echo "RDS Database Master Password: $RDS_MASTER_USER_PASSWORD"
             exit 0
         fi
-
-        
     done
 }
 
