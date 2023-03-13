@@ -105,6 +105,7 @@ create_rds_database() {
             echo "RDS Databse Endpoint: $RDS_DB_INSTANCE_ENDPOINT"
             echo "RDS Database Master User Username: $RDS_MASTER_USER_USERNAME"
             echo "RDS Database Master Password: $RDS_MASTER_USER_PASSWORD"
+            echo "RDS Database Name: $db_name"
             exit 0
         fi
     done
