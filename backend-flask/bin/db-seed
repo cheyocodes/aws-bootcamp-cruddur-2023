@@ -7,9 +7,9 @@ printf "${CYAN}== ${LABEL}${NO_COLOR}\n"
 
 # echo "ARG FIRST"
 # print $0
-echo "db-schema-load"
+echo "db-seed"
 
-seed_path="$(realpath .)/db/schema.sql"
+seed_path="$(realpath .)/db/seed.sql"
 echo $seed_path
 
 if [ "$1" = "prod" ]; then  

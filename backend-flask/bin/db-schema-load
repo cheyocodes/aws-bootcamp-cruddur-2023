@@ -3,22 +3,21 @@
 CYAN='\033[1;36m'
 NO_COLOR='\033[0m'
 LABEL="db-schema-load"
+
 printf "${CYAN}== ${LABEL}${NO_COLOR}\n"
 
-# echo "ARG FIRST"
-# print $0
+
 echo "db-schema-load"
 
 schema_path="$(realpath .)/db/schema.sql"
 echo $schema_path
 
 if [ "$1" = "prod" ]; then  
-    echo "using production"
-    URL=$PRODU_CONNECTION_URL
+    echo "Using production connection url."
+    URL=$PROD_CONNECTION_URL
 else 
+    echo "Using development connection url."
     URL=$CONNECTION_URL
 fi
 
-psql $CONN_URL cruddur < $schema_path
-
-
+psql $URL cruddur < $schema_path
